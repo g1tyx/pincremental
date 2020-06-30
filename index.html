@@ -1,0 +1,1049 @@
+<head>
+    <!--Libraries-->
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.rawgit.com/schteppe/poly-decomp.js/1ef946f1/build/decomp.min.js"></script>
+        <script src="https://cdn.rawgit.com/liabru/matter-js/0895d81f/build/matter.min.js"></script>
+        <script src="https://cdn.rawgit.com/liabru/matter-attractors/c470ed42/build/matter-attractors.min.js"></script>
+        <script type="text/javascript" src="https://download.playfab.com/PlayFabClientApi.js"></script>
+        <script src='https://cdn1.kongregate.com/javascripts/kongregate_api.js'></script>
+    <!--Google Analytics-->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146113740-8"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-146113740-8');
+        </script>
+    <!--Base Code-->
+        <link rel="stylesheet" href="BaseCode/PinBase.css">
+        <!--script src="Code/js/obBase.js"></script-->
+    <!--Main Code-->
+        <link rel="stylesheet" href="Code/css/Pinball.css">
+        <script src="Code/js/obBall.js"></script>
+</head>
+<body>
+    <div id="HeaderHolder">
+        <div id="Header">PINCREMENTAL</div>
+    </div>
+    <div id="BottomButtons">
+        <div class="bButtonHolder">
+            <img class="BottomButton" id="PointMenu" src="Images/Menu/Pinball.png"/>
+        </div>
+        <div class="bButtonHolder">
+            <img class="BottomButton" id="TicketMenu" src="Images/Menu/Ticket.png"/>
+        </div>
+        <div class="bButtonHolder">
+            <img class="BottomButton" id="ArcadeMenu" src="Images/Menu/Arcade.png"/>
+        </div>
+        <div class="bButtonHolder">
+            <img class="BottomButton" id="CompanyMenu" src="Images/Menu/Spy.png"/>
+        </div>
+        <div class="bButtonHolder">
+            <img class="BottomButton" id="InvestorMenu" src="Images/Menu/Company.png"/>
+        </div>
+        <div class="bButtonHolder">
+            <img class="BottomButton" id="WizardMenu" src="Images/Menu/Wizard.png"/>
+        </div>
+        <div class="bButtonHolder" >
+            <img class="BottomButton" id="InfoMenu" src="Images/Menu/Info.png"/>
+        </div>
+    </div>
+    <div class="TotalScoreDisplay">
+        <span class="TotalScore">0</span> Points
+    </div>
+    <div class="TotalMulti">
+        Total Multi: <span id="TotalMulti">1</span>x
+    </div>
+    <div class="container">
+        <div class="score current-score">
+            hits<br><span></span>
+        </div>
+        <div class="score high-score">
+            high score<br><span></span>
+        </div>
+        <button class="trigger left-trigger">tap!</button>
+        <button class="trigger right-trigger">tap!</button>
+        <div class="ExtraLife" id="Life1"></div>
+        <div class="ExtraLife" id="Life2"></div>
+        <div class="ExtraLife" id="Life3"></div>
+        <div class="ExtraLife" id="Life4"></div>
+        <div class="ExtraLife" id="Life5"></div>
+        <div class="MultiZone Off" id="MZ1">2x</div>
+        <div class="MultiZone Off" id="MZ2">2x</div>
+    </div>
+    <div class="score lifetime-high-score" style="display:none">
+        lifetime<br>high score<br><span>5</span>
+    </div>
+    <!--div class="ToPlay">
+        Try For a High Score<br>
+        Or Even Let it Idle!
+    </div-->
+    <!--div class="ExtraLife" id="Life1"></div>
+    <div class="ExtraLife" id="Life2"></div-->
+    <div class="Disclaimer">
+        <span id="ArrowKeys">Arrow keys can also be used to control flippers (Click into game first!)</span><br>
+        <span id="ArrowKeys">Press Shift+R if your ball gets stuck</span>
+    </div>
+    <div class="PopupHolder" id="MainPopups" style="display:none">
+        <div class="Popup" id="PointPopup" style="display:none">
+            <div class="PopHead">
+                Machine Upgrades
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuCurrency">
+                    <span class="BaseCurrency">Points</span>: <span class="TotalScore">0</span>
+                </div>
+                <div class="MenuOverview">
+                    Use your points to buy in-game machine upgrades to increase your points income
+                </div>
+                <hr class="PostHeader">
+                <!--div class="SectionHead" style="margin-bottom: none">Available Upgrades<span class="ScrollDis" style="display:none"> (Scrollable)</span></div>
+                <div class="SubLabel SH" style="font-size: 12px;">(Hold down upgrade button to buy multiple)</div-->
+                    <div class="SectionHead ScrollHead" style="text-decoration: underline;">Upgrades</div>
+                <div class="ScrollBody">
+                    <div class="UpgradeGroup">
+                        <div class="UpgradeHeader">
+                            <div>Basic Point Multiplier</div>
+                            <div class="SubLabel">Doubles your total points from hits</div>
+                            <div class="SubLabel SH" style="font-size: 12px;">(Hold down upgrade button to buy multiple)</div>
+                        </div>
+                        <div class="UpgradeHolder" id="Doubler">
+                            <button class="Upgrade TwoLine" id="Doubler">Double Points</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">500</span></div>
+                            <div class="SubLabel">Multi: <span id="BasicMulti">1</span>x</div>
+                        </div>
+                    </div>
+                    <div class="UpgradeGroup">
+                        <div class="UpgradeHeader">
+                            <div>High Score Point Multiplier</div>
+                            <div class="SubLabel">Multiplies your point income by (X% of your High Score + 1)</div>
+                        </div>
+                        <div class="UpgradeHolder Alt HS" id="HSM1">
+                            <button class="Upgrade TwoLine Alt HS" id="HSM1">20%</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">25</span></div>
+                        </div>
+                        <div class="UpgradeHolder Alt HS" id="HSM2">
+                            <button class="Upgrade TwoLine Alt HS" id="HSM2">40%</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">5000</span></div>
+                        </div>
+                        <div class="UpgradeHolder Alt HS" id="HSM3">
+                            <button class="Upgrade TwoLine Alt HS" id="HSM3">60%</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">100K</span></div>
+                        </div>
+                        <div class="UpgradeHolder Alt HS" id="HSM4">
+                            <button class="Upgrade TwoLine Alt HS" id="HSM4">80%</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">50M</span></div>
+                        </div>
+                        <div class="UpgradeHolder Alt HS" id="HSM5">
+                            <button class="Upgrade TwoLine Alt HS" id="HSM5">100%</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">50T</span></div>
+                        </div>
+                    </div>
+                    <div class="UpgradeGroup">
+                        <div class="UpgradeHeader">
+                            <div>Current Score Point Multiplier</div>
+                            <div class="SubLabel">Multiplies your point income by (X% of your Current Hits + 1)</div>
+                        </div>
+                        <div class="UpgradeHolder Alt CS" id="CSM1">
+                            <button class="Upgrade TwoLine Alt CS" id="CSM1">20%</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">250</span></div>
+                        </div>
+                        <div class="UpgradeHolder Alt CS" id="CSM2">
+                            <button class="Upgrade TwoLine Alt CS" id="CSM2">40%</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">25K</span></div>
+                        </div>
+                        <div class="UpgradeHolder Alt CS" id="CSM3">
+                            <button class="Upgrade TwoLine Alt CS" id="CSM3">60%</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">5M</span></div>
+                        </div>
+                        <div class="UpgradeHolder Alt CS" id="CSM4">
+                            <button class="Upgrade TwoLine Alt CS" id="CSM4">80%</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">1B</span></div>
+                        </div>
+                        <div class="UpgradeHolder Alt CS" id="CSM5">
+                            <button class="Upgrade TwoLine Alt CS" id="CSM5">100%</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">1e20</span></div>
+                        </div>
+                    </div>
+                    <div class="SubLabel">
+                        Pinball Mechanic Upgrades Available In Ticket Menu<br>
+                        (More Coming Soon!)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Popup" id="TicketPopup" style="display:none">
+            <div class="PopHead">
+                Ticket Shop
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                    <div class="MenuCurrency">
+                        <span class="BaseCurrency">Tickets</span>: <span id="Tickets">0</span>
+                        <span class="LifeTimeTicket"><br><span class="BaseCurrency">Total Earned</span>: <span id="TotalTickets">0</span></span>
+                    </div>
+                    <div class="MenuOverview">
+                        Cash out your game for tickets and start again 
+                        <span id="BackupConvert"><br><br>Converts at <sup>3</sup>&radic;<span style="text-decoration: overline">Earned Points/7</span>
+                    </span>
+                    </div>
+                    <hr class="PostHeader">
+                    <div class="MenuSection TicketPrestige">
+                        <div class="SectionHead">Cash Out</div>
+                        <div class="PrestigeHolder" id="Prestige">
+                            <button class="Prestige TwoLine" id="Prestige">Cash Out To Get<br><span class="AvailTickets">0</span> Tickets</button>
+                            <div class="SubLabel">
+                                Requires at Least 10 Tickets Available<br>
+                                Converts at <sup>3</sup>&radic;<span style="text-decoration: overline">Earned Points/7</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--br class="BelieverPrestige"-->
+                    <hr class="PostHeader TicketPrestige">
+                    <div class="SectionHead ScrollHead" style="text-decoration: underline;">Prizes (Scrollable)</div>
+                    <div class="ScrollBody">
+                    <div class="UpgradeGroup">
+                        <div class="UpgradeHeader">
+                            <div>Point Tripler</div>
+                            <div class="SubLabel">Triples your total points from hits</div>
+                            <div class="SubLabel SH" style="font-size: 12px;">(Hold down upgrade button to buy multiple)</div>
+                        </div>
+                        <div class="TicUpgradeHolder" id="Tripler">
+                            <button class="Upgrade TwoLine" id="Tripler">Triple Points</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">10</span> Tickets</div>
+                            <div class="SubLabel">Multi: <span id="TicketMulti">1</span>x</div>
+                        </div>
+                    </div>
+                    <div class="UpgradeGroup">
+                        <div class="UpgradeHeader">
+                            <div>Current Score Multiplier Exponent</div>
+                            <div class="SubLabel">Raises Your Current Score Multiplier to the X Power</div>
+                        </div>
+                        <div class="TicUpgradeHolder Alt CS" id="CSE1">
+                            <button class="Upgrade TwoLine Alt CS" id="CSE1">^1.2</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">50</span></div>
+                        </div>
+                        <div class="TicUpgradeHolder Alt CS" id="CSE2">
+                            <button class="Upgrade TwoLine Alt CS" id="CSE2">^1.4</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">1K</span></div>
+                        </div>
+                        <div class="TicUpgradeHolder Alt CS" id="CSE3">
+                            <button class="Upgrade TwoLine Alt CS" id="CSE3">^1.6</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">50K</span></div>
+                        </div>
+                        <div class="TicUpgradeHolder Alt CS" id="CSE4">
+                            <button class="Upgrade TwoLine Alt CS" id="CSE4">^1.8</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">1M</span></div>
+                        </div>
+                        <div class="TicUpgradeHolder Alt CS" id="CSE5">
+                            <button class="Upgrade TwoLine Alt CS" id="CSE5">^2</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">100M</span></div>
+                        </div>
+                    </div>
+                    <div class="SectionHead">Pinball Mechanic Upgrades</div>
+                    <div class="UpgradeGroup">
+                        <div class="UpgradeHeader">
+                            <div>Multiplier Zones</div>
+                            <div class="SubLabel">Adds 2x Multiplier Zones Between the Top Pegs</div>
+                            <div class="SubLabel SH" style="font-size: 12px;">(Once Per Round Each, Both Multiply Eachother)</div>
+                        </div>
+                        <div class="TicUpgradeHolder" id="MultiplierZones">
+                            <button class="Upgrade TwoLine OneTime" id="MultiplierZones">Multiplier Zones</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">25</span> Tickets</div>
+                        </div>
+                    </div>
+                    <div class="UpgradeGroup">
+                        <div class="UpgradeHeader">
+                            <div>Extra Lives</div>
+                            <div class="SubLabel">Get Extra Lives to Reach Higher Scores</div>
+                        </div>
+                        <div class="TicUpgradeHolder Alt EL" id="EL1">
+                            <button class="Upgrade TwoLine Alt EL" id="EL1">+1 Life</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">500</span></div>
+                        </div>
+                        <div class="TicUpgradeHolder Alt EL" id="EL2">
+                            <button class="Upgrade TwoLine Alt EL" id="EL2">+1 Life</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost Alt">100K</span></div>
+                        </div>
+                    </div>
+                    <div class="UpgradeGroup">
+                        <div class="UpgradeHeader">
+                            <div>Automatic Paddles</div>
+                            <div class="SubLabel">Automatically Hits the Balls at an Interval When Near Paddles</div>
+                            <div class="SubLabel">(Side Blockers Increase Efficiency of this Dramatically)</div>
+                        </div>
+                        <div class="TicUpgradeHolder" id="AutoPaddles">
+                            <button class="Upgrade TwoLine OneTime" id="AutoPaddles">Auto Paddles</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">2500</span> Tickets</div>
+                        </div>
+                    </div>
+                    <div class="UpgradeGroup">
+                        <div class="UpgradeHeader">
+                            <div>Side Blockers</div>
+                            <div class="SubLabel">Adds Walls to Stop the Ball From Falling Down the Sides</div>
+                        </div>
+                        <div class="TicUpgradeHolder" id="SideBlockers">
+                            <button class="Upgrade TwoLine OneTime" id="SideBlockers">Side Blockers</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">25K</span> Tickets</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="Popup" id="ArcadePopup" style="display:none">
+            <div class="PopHead">
+                Arcade Ownership
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                    <div class="MenuCurrency">
+                        Total Shares: <span id="Shares">0</span><br>
+                        <!--Change Money Symbol on App due to Donation-->
+                    </div>
+                    <div class="MenuOverview">
+                            <!--img class="BottomButton" id="InfoMenu" src="Images/Menu/Store.png"/>
+                            <br-->
+                            In an effort to get more gamers involved in the parent company. The arcade is running a promotion exchanging equity for tickets.
+                    </div>
+                    <hr class="PostHeader">
+                        <div class="PrestigeHolder" id="EquityPrestige">
+                            <button class="EquityPrestige TwoLine" id="EquityPrestige">Reset To Get<br><span class="AvailShares">0</span> Shares</button>
+                            <div class="SubLabel">
+                                <span id="New Requirements">Requires at least 10B Total Tickets Earned<br></span>
+                                <span id="Old Requirements" style="display:none">Requires at Least 10 Shares Available<br></span>
+                                Converts at <sup>9</sup>&radic;<span style="text-decoration: overline">Earned Tickets/10</span> aka (Earned Tickets/10)^<span style="font-size: 10px;">&#x2151;</span>
+                            </div>
+                        </div>
+                    <hr class="PostHeader">
+                    <div class="MenuCurrency">
+                        Savings: $<span id="Money">0.00</span><br>
+                        Net Income: $<span id="MoneyMin">0.00</span>/min (<span class="NetMoney">0.00</span> total)
+                    </div>
+                    <div class="MenuSection StorePrestige">
+                        <div class="BuyStoreHolder" id="BuyStore">
+                            <button class="BuyStoreButton" id="BuyStore"><span id="StoreText">Lease An Arcade</span></button>
+                        </div>
+                        <div class="StoreOverview">
+                            Next Arcade Requires <span id="SharesNeeded">10</span> Total Shares<br>
+                            Next Arcade Earns $<span id="YearPerStore">100</span>K a Year (<span id="MinPerStore">20</span>&#162;/min)
+                        </div>
+                    </div>
+                    <br class="StorePrestige">
+                    <hr class="PostHeader StorePrestige">
+                    <div class="SectionHead SBH ScrollHead">Arcade Upgrades (Scrollable)</div>
+                    <div class="ScrollBody">
+                        <div class="StoreHolder Money" id="MoneyPoints">
+                            <button class="Upgrade TwoLine" id="MoneyPoints">Arcade Multi:<br><span id="ShowStoreMulti">Triple</span> Points</button>
+                            <br><div class="CostLabel">Cost: $<span class="Cost SMC">0.10</span></div>
+                            <div class="SubLabel">Multi: <span id="ArcadeMulti">1</span>x</div>
+                        </div>
+                        <div class="SectionHead SBH">Executive Assistants</div>
+                        <div class="StoreHolder Automator" id="aDoubler">
+                            <button class="Upgrade TwoLine" id="aDoubler"><span class="HireFire">Hire</span><br class="HFBR">Doubler<br>Assistant</button>
+                            <br><div class="CostLabel">Salary: $<span class="Salary">0.10</span></div>
+                            <div class="SubLabel">Buys Doubler</div>
+                        </div>
+                        <div class="StoreHolder Automator" id="aHSM">
+                            <button class="Upgrade TwoLine" id="aHSM"><span class="HireFire">Hire</span><br class="HFBR">High Score Multi<br>Assistant</button>
+                            <br><div class="CostLabel">Salary: $<span class="Salary">0.20</span></div>
+                            <div class="SubLabel">Buys HS Multi</div>
+                        </div>
+                        <br>
+                        <div class="StoreHolder Automator" id="aCSM">
+                            <button class="Upgrade TwoLine" id="aCSM"><span class="HireFire">Hire</span><br class="HFBR">Current Score Multi<br>Assistant</button>
+                            <br><div class="CostLabel">Salary: $<span class="Salary">0.20</span></div>
+                            <div class="SubLabel">Buys CS Multi</div>
+                        </div>
+                        <br>
+                        <div class="StoreHolder Automator" id="aTripler">
+                            <button class="Upgrade TwoLine" id="aTripler"><span class="HireFire">Hire</span><br class="HFBR">Tripler<br>Assistant</button>
+                            <br><div class="CostLabel">Salary: $<span class="Salary">0.50</span></div>
+                            <div class="SubLabel">Buys Tripler</div>
+                        </div>
+                        <div class="StoreHolder Automator" id="aCSE">
+                            <button class="Upgrade TwoLine" id="aCSE"><span class="HireFire">Hire</span><br class="HFBR">Current Score Power<br>Assistant</button>
+                            <br><div class="CostLabel">Salary: $<span class="Salary">0.50</span></div>
+                            <div class="SubLabel">Buys CS Exponent</div>
+                        </div>
+                        <br>
+                        <div class="StoreHolder Automator" id="aMultiplierZones">
+                            <button class="Upgrade TwoLine" id="aMultiplierZones"><span class="HireFire">Hire</span><br class="HFBR">Multiplier Zone<br>Assistant</button>
+                            <br><div class="CostLabel">Salary: $<span class="Salary">0.50</span></div>
+                            <div class="SubLabel">Buys Multiplier Zones</div>
+                        </div>
+                        <div class="StoreHolder Automator" id="aEL">
+                            <button class="Upgrade TwoLine" id="aEL"><span class="HireFire">Hire</span><br class="HFBR">Extra Life<br>Assistant</button>
+                            <br><div class="CostLabel">Salary: $<span class="Salary">0.50</span></div>
+                            <div class="SubLabel">Buys Extra Lives</div>
+                        </div>
+                        <br>
+                        <div class="StoreHolder Automator" id="aAutoPaddles">
+                            <button class="Upgrade TwoLine" id="aAutoPaddles"><span class="HireFire">Hire</span><br class="HFBR">Auto Paddle<br>Assistant</button>
+                            <br><div class="CostLabel">Salary: $<span class="Salary">0.50</span></div>
+                            <div class="SubLabel">Buys Auto Paddles</div>
+                        </div>
+                        <div class="StoreHolder Automator" id="aSideBlockers">
+                            <button class="Upgrade TwoLine" id="aSideBlockers"><span class="HireFire">Hire</span><br class="HFBR">Side Blocker<br>Assistant</button>
+                            <br><div class="CostLabel">Salary: $<span class="Salary">0.50</span></div>
+                            <div class="SubLabel">Buys Side Blockers</div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="Popup" id="CompanyPopup" style="display:none">
+            <div class="PopHead">
+                Corporate Favors
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuCurrency">
+                    Favors: <span id="Favors">0</span><br>
+                    Total Favors: <span id="TotalFavors">0</span><br>
+                    <!--Change Money Symbol on App due to Donation-->
+                </div>
+                <div class="MenuOverview">
+                        <!--img class="BottomButton" id="InfoMenu" src="Images/Menu/Store.png"/>
+                        <br-->
+                        Competitors start coming to you offering powerful favors in exchange for shares of your current company
+                        <br><br>Conversion Requires 300+ Shares
+                        <br>(Best to convert for 4-5 Favors at first, getting more is easier later on)<br>
+                    </div>
+                <hr class="PostHeader">
+                <div class="MenuSection">
+                    <div class="BuyCompanyHolder" id="BuyCompany">
+                        <button class="BuyCompanyButton" id="BuyCompany">Exchange Shares<br><br>For <span class="AvailFavors">0</span> Favors</button>
+                    </div>
+                    <div class="StoreOverview">
+                        <!--Each exchange provides powerful corporate favors<br-->
+                        Converts at <sup>4</sup>&radic;<span style="text-decoration: overline">Total Shares</span> aka (Total Shares)^&frac14;
+                        <span id="NextFavor"><br><span id="FavorShares">x</span> More Shares Needed for Another Favor</span>
+                    </div>
+                </div>
+                <br>
+                <hr class="PostHeader">
+                <div class="SectionHead ScrollHead">Corporate Favors (Scrollable)</div>
+                <div class="ScrollBody">
+                    <div class="CompanyHolder FirstUpgrade" id="AutoCash">
+                        <button class="CompanyUpgrade" id="AutoCash">Automatic<br>Cash Out</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">4</span> Favors</div>
+                        <div class="SubLabel">Gives Tickets Without Reseting on Each Hit</div>
+                        <div class="SubLabel">Must Be Purchased First</div>
+                    </div>
+                    <br class="lcard">
+                    <div class="CompanyHolder Multi" id="CompanyPoints">
+                        <button class="CompanyUpgrade" id="CompanyPoints">Corporate Multi:<br><span id="ShowCompMulti">5</span>x Points</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">4</span> Favors</div>
+                        <div class="SubLabel">Multi: <span id="SpyMulti">1</span>x Points</div>
+                    </div>
+                    <br>
+                    <div class="CompanyHolder" id="AutoShares">
+                        <button class="CompanyUpgrade" id="AutoShares">Auto Reset<br>For Shares<br>(Customizable)</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">12</span> Favors</div>
+                        <div class="SubLabel">
+                        <div id="AutoStoreCustom"><label>Shares To AutoReset: </label><input type="number" id="AutoStoreAMT" min="10" value="10"><br>
+                            <label>AutoReset For Shares: </label><input type="checkbox" id="AutoStoreCheck"/>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="CompanyHolder" id="AutoArcade">
+                        <button class="CompanyUpgrade" id="AutoArcade">Auto Lease<br>Arcades</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">16</span> Favors</div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="UpgradeHeader">
+                        <div>Retainment Favors</div>
+                        <div class="SubLabel">Puts the executive assistant on retainer so they never reset</div>
+                    </div>
+                    <div class="CompanyHolder Perma" id="PermaDoubler">
+                        <button class="CompanyUpgrade" id="PermaDoubler">Retain<br>Doubler<br>Assistant</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">4</span> Favors</div>
+                    </div>
+                    <br>
+                    <div class="CompanyHolder Perma" id="PermaHSM">
+                        <button class="CompanyUpgrade" id="PermaHSM">Retain<br>High Score Multi<br>Assistant</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">4</span> Favors</div>
+                    </div>
+                    <div class="CompanyHolder Perma" id="PermaCSM">
+                        <button class="CompanyUpgrade" id="PermaCSM">Retain<br>Current Score<br>Multi Assistant</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">4</span> Favors</div>
+                    </div>
+                    <br>
+                    <div class="CompanyHolder Perma" id="PermaTripler">
+                        <button class="CompanyUpgrade" id="PermaTripler">Retain<br>Tripler<br>Assistant</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Favors</div>
+                    </div>
+                    <div class="CompanyHolder Perma" id="PermaCSE">
+                        <button class="CompanyUpgrade" id="PermaCSE">Retain<br>Current Score Exp<br>Assistant</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Favors</div>
+                    </div>
+                    <br>
+                    <div class="CompanyHolder Perma" id="PermaMultiplierZones">
+                        <button class="CompanyUpgrade" id="PermaMultiplierZones">Retain<br>Multiplier Zone<br>Assistant</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Favors</div>
+                    </div>
+                    <div class="CompanyHolder Perma" id="PermaEL">
+                        <button class="CompanyUpgrade" id="PermaEL">Retain<br>Extra Life<br>Assistant</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Favors</div>
+                    </div>
+                    <br>
+                    <div class="CompanyHolder Perma" id="PermaAutoPaddles">
+                        <button class="CompanyUpgrade" id="PermaAutoPaddles">Retain<br>Auto Paddle<br>Assistant</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Favors</div>
+                    </div>
+                    <div class="CompanyHolder Perma" id="PermaSideBlockers">
+                        <button class="CompanyUpgrade" id="PermaSideBlockers">Retain<br>Side Blocker<br>Assistant</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Favors</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="Popup" id="InvestorPopup" style="display:none">
+            <!--div id="ComingSoon">
+                <div id="ComingSoonText">Coming Soon!</div>
+            </div-->
+            <div class="PopHead">
+                Side Business
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuCurrency">
+                    Investors: <span id="Investors">0</span><br>
+                    Lifetime Investors: <span id="TotalInvestors">0</span><br>
+                    <!--Change Money Symbol on App due to Donation-->
+                </div>
+                <div class="MenuOverview">
+                        <!--img class="BottomButton" id="InfoMenu" src="Images/Menu/Store.png"/>
+                        <br-->
+                    After all this work for others, you decide to start your own side business and use your new contacts in corporate investing to secure investors for this new venture
+                </div>
+                <hr class="PostHeader">
+                <div class="MenuSection">
+                    <div class="MergeInvestorHolder" id="BuyInvestor">
+                        <button class="MergeInvestor" id="BuyInvestor">Call in Favors<br>for <span class="AvailableInvestors">1</span> Investors</button>
+                    </div>
+                    <div class="StoreOverview">
+                        Converts at &radic;<span style="text-decoration: overline">Favors/4</span> aka sqrt(Favors/4)<br>
+                        <span id="InvReq"><b>Requires all favor upgrades and at least 80 total favors</b></span>
+                        <span id="NextInv"><span id="InvFavors">x</span> More Favors Needed for Another Investor</span>
+                    </div>
+                </div>
+                <br>
+                <hr class="PostHeader">
+                <div class="SectionHead">Investor Upgrades</div>
+                <div class="SubLabel ScrollHead">Use your investors' connections to get bleeding edge technology</div>
+                <div class="ScrollBody">
+                    <!--div class="InvestorHolder" id="CardTransM">
+                        <button class="InvestorUpgrade" id="CardTransM">Money Cards</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">2</span> Investors</div>
+                    </div>
+                    <br-->
+                    <div class="InvestorHolder Multi" id="InvestorIncomeMulti">
+                        <button class="InvestorUpgrade" id="InvestorIncomeMulti">Double Shares<br>From Resets</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">1</span> Investors</div>
+                        <div class="SubLabel">Multi: <span id="IncomeMulti">1</span>x</div>
+                    </div>
+                    <div class="InvestorHolder Multi" id="InvestorMulti">
+                        <button class="InvestorUpgrade" id="InvestorMulti">Investor Multi:<br>Triple Tickets</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">2</span> Investors</div>
+                        <div class="SubLabel">Multi: <span id="eMulti">1</span>x</div>
+                    </div>
+                    <br>
+                    <div class="InvestorHolder Perma" id="PermaAutoCash">
+                        <button class="InvestorUpgrade" id="PermaAutoCash">Retain<br>Auto Cash Out</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">1</span> Investors</div>
+                        <div class="SubLabel">&nbsp;</div>
+                    </div>
+                    <div class="InvestorHolder Multi" id="HSE">
+                        <button class="InvestorUpgrade" id="HSE">Increase<br>High Score Multi<br>Exponent by .1</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">2</span> Investors</div>
+                        <div class="SubLabel">Exponent: x^<span id="HSExponent">1</span></div>
+                    </div>
+                    <!--div class="InvestorHolder Binary" id="AutoCompanySpin">
+                        <button class="InvestorUpgrade" id="AutoCompanySpin">Get 1 Hit<br>After Favor<br>Exchange</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">2</span> Investors</div>
+                    </div-->
+                    <br>
+                    <div class="InvestorHolder Binary" id="AutoCompanies">
+                        <button class="InvestorUpgrade" id="AutoCompanies">Auto Exchange<br>For Favors</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">12</span> Investors</div>
+                        <div class="SubLabel">
+                        <div id="AutoCompCustom"><label>Favors To AutoGet: </label><input type="number" id="AutoCompAMT" min="4" value="4"><br></div>
+                        <div id="AutoCompToggle"><label>AutoGet Favors: </label><input type="checkbox" id="AutoCompCheck"/></div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="InvestorHolder Binary" id="RetainBasicPermas">
+                        <button class="InvestorUpgrade" id="RetainBasicPermas">Retain All<br>Basic Upgrade<br>Retainers</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">12</span> Investors</div>
+                    </div>
+                    <div class="InvestorHolder Binary" id="RetainTicPermas">
+                        <button class="InvestorUpgrade" id="RetainTicPermas">Retain All<br>Ticket Upgrade<br>Retainers</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">12</span> Investors</div>
+                        <!--div class="SubLabel">Keeps Automation on Prestige & Retains Buyers</div-->
+                    </div>
+                    <br>
+                    <div class="InvestorHolder Binary Retain" id="RetainMultiplierZones">
+                        <button class="InvestorUpgrade" id="RetainMultiplierZones">Keep<br>Multiplier Zones</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">4</span> Investors</div>
+                        <div class="SubLabel">Keeps Multiplier Zones on Prestige Without Needing To Buy</div>
+                        <div class="SubLabel">(Does Not Retain Assistant)</div>
+                    </div>
+                    <br>
+                    <div class="InvestorHolder Binary Retain" id="RetainAutoPaddles">
+                        <button class="InvestorUpgrade" id="RetainAutoPaddles">Keep<br>AutoPaddles</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Investors</div>
+                        <div class="SubLabel">Keeps AutoPaddles on Prestige Without Needing To Buy</div>
+                        <div class="SubLabel">(Does Not Retain Assistant)</div>
+                    </div>
+                    <br>
+                    <div class="InvestorHolder Binary Retain" id="RetainSideBlockers">
+                        <button class="InvestorUpgrade" id="RetainSideBlockers">Keep<br>Side Blockers</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Investors</div>
+                        <div class="SubLabel">Keeps Side Blockers on Prestige Without Needing To Buy</div>
+                        <div class="SubLabel">(Does Not Retain Assistant)</div>
+                    </div>
+                    <br>
+                    <div class="InvestorHolder" id="StoreMulti">
+                        <button class="InvestorUpgrade" id="StoreMulti">Arcade Multi<br>3x&rarr;4x</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">5</span> Investors</div>
+                    </div>
+                    <div class="InvestorHolder" id="CompMulti">
+                        <button class="InvestorUpgrade" id="CompMulti">Corporate Multi<br>5x&rarr;7x</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">5</span> Investors</div>
+                    </div>
+                    <br>
+                    <div class="InvestorHolder Auto" id="autoMoneyPoints">
+                        <button class="InvestorUpgrade" id="autoMoneyPoints">Autobuy<br>Arcade Multi</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">4</span> Investors</div>
+                    </div>
+                    <br>
+                    <!--div class="InvestorHolder Perma" id="PermaFirstSpin">
+                        <button class="InvestorUpgrade" id="PermaFirstSpin">Retain<br>Auto Presents<br>After Store'</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">3</span> Investors</div>
+                    </div-->
+                    <div class="InvestorHolder Perma" id="PermaAutoShares">
+                        <button class="InvestorUpgrade" id="PermaAutoShares">Retain<br>AutoBuy Shares</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">6</span> Investors</div>
+                    </div>
+                    <br>
+                    <div class="InvestorHolder Perma" id="PermaAutoArcade">
+                        <button class="InvestorUpgrade" id="PermaAutoArcade">Retain<br>Auto Lease<br>Arcades</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Investors</div>
+                    </div>
+                    <br>
+                    <div class="InvestorHolder Auto Req" id="autoCompanyPoints">
+                        <button class="InvestorUpgrade" id="autoCompanyPoints">Autobuy<br>Corporate Multi<br>After Others</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">10</span> Investors</div>
+                        <div class="SubLabel">Requires All Retain Upgrades</div>
+                    </div>
+                    <!--br>
+                    <div class="InvestorHolder NewGame Req" id="NewGame">
+                        <button class="InvestorUpgrade" id="NewGame">Full Retirement<br>(New Game+)</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">48</span> Investors</div>
+                        <div class="MultiLabel">Multi: <span id="NGMulti">1</span>x</div>
+                        <div class="SubLabel">
+                            <span id="Requirement"><b>Requires All Retirement Upgrades</b><br></span>
+                            <span id="About">Fully Resets the Game With a Multiplier to<br>Believers <b>and</b> Presents of Sqrt(Total Investors)
+                            <span id="TotalNG" style="font-size: 12px"><br>(New Multiplier: <span id="AvailNewNGM">0</span>x)</span>
+                            <br>(Keeps Achievements, Bonus Multiplies On Repeat)</span>
+                            <br><br><span id="Thanks">New Game+ is Optional, Just To Let You Replay.<br>Thank You So Much for Playing!<br>Have a Great Holiday Season!!</span>
+                        </div>
+                    </div-->
+                    <!--br>
+                    <br>
+                    <div class="PlanetHolder" id="NewPlanet">
+                        <button class="UnlockPlanet" id="NewPlanet" disabled>New Planet+</button>
+                        <div class="SubLabel">Coming Soon</div>
+                    </div-->
+                </div>
+                
+            </div>
+        </div>
+        <div class="Popup" id="WizardPopup" style="display:none">
+            <!--div id="ComingSoon">
+                <div id="ComingSoonText">Coming Soon!</div>
+            </div-->
+            <div class="PopHead">
+                Pinball Wizard
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuCurrency">
+                    Pinball Mana: <span id="Mana">0</span><br>
+                    Lifetime Pinball Mana: <span id="TotalMana">0</span><br>
+                    <!--Change Money Symbol on App due to Donation-->
+                </div>
+                <div class="MenuOverview">
+                        <!--img class="BottomButton" id="InfoMenu" src="Images/Menu/Store.png"/>
+                        <br-->
+                    You notice a man watching you constantly as you gain wealth and investors, when confronted he tells you that ever since he was a young boy, he's played the silver ball. From Soho down to Brighton he must have played them all. But he hasn't seen anything like you in any amusement hall, and would like to offer you transcended power if you would sacrifice your belongings and supporters.
+                    <span id="Rebalance" style="display: none;"><br>(This Menu is May Be Rebalanced, Mana Refunds Will Occur if So)</span>
+                </div>
+                <hr class="PostHeader">
+                <div class="MenuSection">
+                    <div class="MergeWizardHolder" id="BuyWizard">
+                        <button class="MergeWizard" id="BuyWizard">Sacrifice Investors<br>for <span class="AvailableMana">3</span> Pinball Mana<img id="WizardIcon" src="Images/Menu/Wizard.png"/></button>
+                    </div>
+                    <div class="StoreOverview">
+                        Converts at Log<sub>5</sub>(Total Investors*5)<br>
+                        <span id="ManaReq"><b>Requires all investor upgrades and at least 125 total investors</b></span>
+                        <span id="NextMana"><span id="ManaInv">x</span> More Investors Needed for More Pinball Mana</span>
+                    </div>
+                </div>
+                <br>
+                <hr class="PostHeader">
+                <div class="SectionHead">Wizard Upgrades (Scrollable)</div>
+                <div class="SubLabel ScrollHead">Use your transcended power to ease your next life</div>
+                <div class="ScrollBody">
+                    <div class="WizardHolder Multi" id="WizardFavorMulti">
+                        <button class="WizardUpgrade" id="WizardFavorMulti">Double Favors</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">1</span> Mana</div>
+                        <div class="SubLabel">Multi: <span id="FavorMulti">1</span>x</div>
+                        <div class="SubLabel">Doubles Favors Recieved on Exchange</div>
+                    </div>
+                    <br>
+                    <div class="WizardHolder Multi" id="PointMana">
+                        <button class="WizardUpgrade" id="PointMana">Each Lifetime Mana<br>Adds <span id="NextWPM"></span>x<br>Point Multiplier</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">1</span> Mana</div>
+                        <div class="SubLabel">Multi: <span id="WizardPointMulti">1</span>x</div>
+                        <div class="SubLabel">(Additive<span id="CurrentWPM"></span>)</div>
+                    </div>
+                    <div class="WizardHolder Multi" id="TicketMana">
+                        <button class="WizardUpgrade" id="TicketMana">Each Lifetime Mana<br>Adds <span id="NextWTM"></span>x<br>Ticket Multiplier</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">2</span> Mana</div>
+                        <div class="SubLabel">Multi: <span id="WizardTicketMulti">1</span>x</div>
+                        <div class="SubLabel">(Additive<span id="CurrentWTM"></span>)</div>
+                    </div>
+                    <br>
+                    <div class="WizardHolder Perma" id="PermaPermaAutoCash">
+                        <button class="WizardUpgrade" id="PermaPermaAutoCash">Permanent<br>Auto Cash Out</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">1</span> Mana</div>
+                    </div>
+                    <br>
+                    <div class="WizardHolder Binary" id="AmazingPaddles">
+                        <button class="WizardUpgrade" id="AmazingPaddles">Better<br>Auto Paddles</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">1</span> Mana</div>
+                        <div class="SubLabel">Gives Auto Paddles ability to operate separately and faster</div>
+                    </div>
+                    <br>
+                    <div class="WizardHolder Binary" id="LifetimeMulti">
+                        <button class="WizardUpgrade" id="LifetimeMulti">Get Multiplier from<br>&radic;<span style="text-decoration: overline; font-size: 10px;">Lifetime High Score</span></button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">2</span> Mana</div>
+                        <div class="SubLabel">Current Multi: <span id="lhsMulti">1</span>x</div>
+                    </div>
+                    <div class="WizardHolder Binary" id="MultiZoneMulti">
+                        <button class="WizardUpgrade" id="MultiZoneMulti">Multiplier Zones<br>Become 10x</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">2</span> Mana</div>
+                        <div class="SubLabel">Also Makes Zones Permanent</div>
+                    </div>
+                    <br>
+                    <div class="WizardHolder Binary" id="PermaScore">
+                        <button class="WizardUpgrade" id="PermaScore">Keep<br>High Score<br>On Prestige</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">3</span> Mana</div>
+                        <div class="SubLabel">High Score Will Now Only Reset On Mana Prestige</div>
+                    </div>
+                    <br>
+                    <div class="SectionHead SBH">Prestige Automation</div>
+                    <div class="WizardHolder Binary" id="AutoInvestors">
+                        <button class="WizardUpgrade" id="AutoInvestors">Auto<br>Call In Favors<br>For Investors</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">15</span> Mana</div>
+                        <div class="SubLabel">
+                        <div id="AutoInvCustom"><label>Investors To AutoGet: </label><input type="number" id="AutoInvAMT" min="1" value="4"><br></div>
+                        <div id="AutoInvToggle"><label>AutoGet Investors: </label><input type="checkbox" id="AutoInvCheck"/></div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="WizardHolder Binary" id="RetainSharePrestiges">
+                        <button class="WizardUpgrade" id="RetainSharePrestiges">Retain<br>Share/Arcade<br>Automation</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">7</span> Mana</div>
+                        <div class="SubLabel">Retains AutoReset & AutoLease</div>
+                    </div>
+                    <div class="WizardHolder Binary" id="RetainAutoExchange">
+                        <button class="WizardUpgrade" id="RetainAutoExchange">Retain<br>AutoExchange<br>For Favors</button>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Mana</div>
+                        <div class="SubLabel">Retains Favor AutoExchange</div>
+                    </div>
+                    <br>
+                    <div class="SectionHead SBH">Other Investor Retainers</div>
+                        <div class="WizardHolder Binary" id="RetainAllPermas">
+                            <button class="WizardUpgrade" id="RetainAllPermas">Retain All<br>Upgrade Retainer<br>Retainers</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">8</span> Mana</div>
+                            <div class="SubLabel">Heard you like retainers, so here's a retainer<br>to retain your retainers while you wear a retainer</div>
+                        </div>
+                        <br>
+                        <div class="WizardHolder Binary" id="RetainMechanics">
+                            <button class="WizardUpgrade" id="RetainMechanics">Permanent<br>AutoPaddles and<br>SideBlockers</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">4</span> Mana</div>
+                            <div class="SubLabel">Makes AutoPaddles and SideBlockers Permanent<br>(Does Not Retain AutoBuyers/Retainers)</div>
+                        </div>
+                        <br>
+                        <div class="WizardHolder Binary" id="RetainUpMultis">
+                            <button class="WizardUpgrade" id="RetainUpMultis">Permanently Raise<br>Corporate/Arcade<br>Multis</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">4</span> Mana</div>
+                            <div class="SubLabel">Permanently changes Corporate Multi to 7 and Arcade Multi to 4 <br>(Also retains those investor upgrades)</div>
+                        </div>
+                        <br>
+                        <div class="WizardHolder Binary" id="RetainAutoMultis">
+                            <button class="WizardUpgrade" id="RetainAutoMultis">Forever AutoBuy<br>Corporate/Arcade<br>Multis</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">4</span> Mana</div>
+                            <div class="SubLabel">Retains those investor upgrades<br>(Corporate Multi still requires the other favor upgrades to be bought)</div>
+                        </div>
+                    <div class="SectionHead SBH">Investor Upgrade AutoBuyers</div>
+                        <div class="WizardHolder Auto" id="autoInvestorIncomeMulti">
+                            <button class="WizardUpgrade" id="autoInvestorIncomeMulti">AutoBuy<br>Double Shares</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">5</span> Mana</div>
+                            <!--span class="AutomationToggle On">&#10003; On</span-->
+                        </div>
+                        <div class="WizardHolder Auto" id="autoInvestorMulti">
+                            <button class="WizardUpgrade" id="autoInvestorMulti">AutoBuy<br>Investor Multi</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">5</span> Mana</div>
+                            <!--span class="AutomationToggle Off">&#10007; Off</span-->
+                        </div>
+                        <br>
+                        <div class="WizardHolder Auto" id="autoHSE">
+                            <button class="WizardUpgrade" id="autoHSE">AutoBuy<br>High Score Exponent</button>
+                            <br><div class="CostLabel">Cost: <span class="Cost">5</span> Mana</div>
+                            <!--span class="AutomationToggle Off">&#10007; Off</span-->
+                        </div>
+                        <div class="SubLabel">(More Upgrades Will Likely Be Added)</div>
+
+                </div>
+                
+            </div>
+        </div>
+        <div class="Popup" id="AchievePopup" style="display:none">
+            <div class="PopHead">
+                Achievements
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuCurrency">
+                    Achievements: <span id="AchievementsCount">1</span><br>
+                    Total Bonus: <span id="TotalAchBonus">1</span>x<br>
+                    <!--Change Money Symbol on App due to Donation-->
+                </div>
+                <div class="MenuOverview">
+                        <!--img class="BottomButton" id="InfoMenu" src="Images/Menu/Store.png"/>
+                        <br-->
+                    Earn achievements through gameplay which provide an additive 5% point bonus from unused Arcade Income, Favors, Investors, and Mana!
+                    <br>
+                    <br class="EmpDisclaimer">
+                    <span id="ACHsub">Currently Each <b>Unspent</b> Arcade Income Dollar, Investor, Mana, and Every 4 Favors additively increase points by <span id="AchBonus">0</span>%</span>
+                    <!--br><span id="ACHemp" class="EmpDisclaimer">Achievement Multi is Disabled With Money Cards for Balance</span-->
+                </div>
+                <hr class="PostHeader">
+                <div class="SectionHead ScrollHead">Achievements</div>
+                <div id="Achievements">
+                    <div class='Achieve Unearned' id='ACHStart' data-tooltip='Buy Your First Upgrade' data-atype='Normal' data-progresstype='Full'>The First One</div>
+                    <div class='Achieve Unearned' id='ACHHSM' data-tooltip='Max Out High Score Multi Percent' data-atype='Normal' data-progresstype='Partial'>The High Score Multi One</div>
+                    <div class='Achieve Unearned' id='ACHCSM' data-tooltip='Max Out Current Score Multi Percent' data-atype='Normal' data-progresstype='Partial'>The Current Score Multi One</div>
+                    <div class='Achieve Unearned' id='ACHHighScore' data-tooltip='Get a High Score of 30' data-atype='Levels' data-progresstype='Partial'>The High Score One <span id="achNum">1</span></div>
+                    <div class='Achieve Unearned' id='ACHPaddles' data-tooltip='Move Paddles 50 Times' data-atype='Levels' data-progresstype='Partial'>The Paddle One <span id="achNum">1</span></div>
+                    <div class='Achieve Unearned' id='ACHBumper' data-tooltip='Hit Bumpers 200 Times' data-atype='Levels' data-progresstype='Partial'>The Bumper One <span id="achNum">1</span></div>
+                    <div class='Achieve Unearned' id='ACHTickets' data-tooltip='Cash Out for Tickets' data-atype='Normal' data-progresstype='Full'>The Ticket One</div>
+                    <div class='Achieve Unearned' id='ACHCSE' data-tooltip='Max Out Current Score Multi Exponent' data-atype='Normal' data-progresstype='Partial'>The Current Score Exponent One</div>
+                    <div class='Achieve Unearned' id='ACHShares' data-tooltip='Reset for 10+ Shares' data-atype='Levels' data-progresstype='Partial'>The Shares One <span id="achNum">1</span></div>
+                    <div class='Achieve Unearned' id='ACHArcade' data-tooltip='Buy 1 Arcade' data-atype='Levels' data-progresstype='Partial'>The Arcade One <span id="achNum">1</span></div>
+                    <div class='Achieve Unearned' id='ACHAutoDoubler' data-tooltip='Automate the Doubler Upgrade' data-atype='Normal' data-progresstype='Full'>Hated That Button Anyway</div>
+                    <div class='Achieve Unearned' id='ACHAutoBasics' data-tooltip='Automate All Machine Upgrades' data-atype='Normal' data-progresstype='Full'>The Basic Automators One</div>
+                    <div class='Achieve Unearned' id='ACHAutoTicUp' data-tooltip='Automate All Ticket Upgrades' data-atype='Normal' data-progresstype='Full'>The Ticket Automators One</div>
+                    <div class='Achieve Unearned' id='ACHOneFavor' data-tooltip='Sell Out For a Favor' data-atype='Normal' data-progresstype='Full'>Wait...I Can Only Get One??</div>
+                    <div class='Achieve Unearned' id='ACHRetainers' data-tooltip='Retain All Assistants' data-atype='Normal' data-progresstype='Partial'>The Retainment One</div>
+                    <div class='Achieve Unearned' id='ACHTBD' data-tooltip='Get the Next Prestige Level' data-atype='Normal' data-progresstype='Full'>The Incomplete One</div>
+<!--div class='Achieve Unearned' id='ACHMoreFavors' data-tooltip='Have 30 Favors at Once' data-atype='Levels' data-progresstype='Partial'>The MultiFavor One <span id="achNum">1</span></div-->
+                </div>
+            </div>
+        </div>
+        <div class="Popup" id="CloudPopup" style="display:none">
+            <div class="PopHead">
+                Cloud Saving
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuOverview">
+                    Save to the cloud to play on multiple computers and protect your save against browser cache clearing 
+                </div>
+                <hr class="PostHeader">
+                <div class="SectionHead Info">Saving/Loading</div>
+                    <div class="DonationHolder Cloud Setting" id="CloudSave">
+                        <button class="InfoButton CloudSave" id="CloudSave">Save to<br>Cloud</button>
+                    </div>
+                    <div class="DonationHolder Cloud Setting" id="CloudLoad">
+                        <button class="InfoButton CloudLoad" id="CloudLoad">Load From<br>Cloud</button>
+                    </div>
+                    <br>
+                    <div class="SubLabel LastSaved">
+                        No Cloud Save Detected
+                    </div>
+                    <div class="SubLabel">
+                        (Game AutoSaves Locally, Cloud Saves are limited to Kongregate)
+                    </div>
+            </div>
+        </div>
+        <div class="Popup" id="InfoPopup" style="display:none">
+            <div class="PopHead">
+                Info
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuOverview">
+                    This game was developed by Makopaz Games.<br> (Which is just one guy developing during quarantine)<br><br> If you enjoyed this game, please do let me know!<br> Any and all donations are greatly appreciated.
+                </div>
+                <hr class="PostHeader">
+                <div class="SectionHead">Donations</div>
+                <div class="Donations">
+                    <div class="DonationHolder" id="triplerdonation">
+                        <button class="Donation TwoLine" id="triplerdonation">Forever<br>Triple Points</button>
+                        <br><div class="CostLabel">20 Kreds</div>
+                        <div class="dCurrent">Current Multi: <span id="DonationMulti">1</span></div>
+                    </div>
+                    <div class="DonationHolder" id="ticketdonation">
+                        <button class="Donation TwoLine" id="ticketdonation">Forever<br>Triple Tickets</button>
+                        <br><div class="CostLabel">50 Kreds</div>
+                        <div class="dCurrent">Current Multi: <span id="DonationTicketMulti">1</span></div>
+                    </div>
+                    <div class="DonationHolder" id="hsedonation">
+                        <button class="Donation TwoLine" id="hsedonation">High Score Multi<br>x^<span id="HSE1">1</span> -> x^<span id="HSE2">1.4</span></button>
+                        <br><div class="CostLabel">75 Kreds</div>
+                        <div class="dCurrent">Exponent: x^<span id="hsEXP">1</span></div>
+                    </div>
+                    <br>
+                    <div class="DonationHolder" id="lifedonation">
+                        <button class="Donation TwoLine" id="lifedonation">+1 Life Forever<br>(Max 3)</button>
+                        <br><div class="CostLabel">75 Kreds</div>
+                        <div class="dCurrent">Extra Lives: <span id="ExtraLives">0</span></div>
+                    </div>
+                    <div class="DonationHolder" id="storedonation">
+                        <button class="Donation TwoLine" id="storedonation">Earn <span id="IncomeAdd">10</span>&cent; More<br>Per Arcade Forever</button>
+                        <br><div class="CostLabel">75 Kreds</div>
+                        <div class="dCurrent">Extra Income: $<span id="ExtraIncome">0.00</span></div>
+                    </div>
+                    <div class="DonationHolder" id="sharedonation">
+                        <button class="Donation TwoLine" id="sharedonation">Forever <span id="PShares">1.5x</span><br>More Shares</button>
+                        <br><div class="CostLabel">100 Kreds</div>
+                        <div class="dCurrent">Share Multi: <span id="ExtraShares">1</span>x</div>
+                    </div>
+                </div>
+                <hr class="PostHeader">
+                <div class="SectionHead Info">More Info/Settings</div>
+                <div class="ScrollBod">
+                    <div class="DonationHolder Setting" id="NumberSystem">
+                        <button class="InfoButton" id="NumberSystem">Numbers:<br><span id="NumberType">Mixed</span></button>
+                    </div>
+                    <div class="DonationHolder Setting" id="TicketAlerts">
+                        <button class="InfoButton" id="TicketAlerts">Ticket Alerts:<br><span id="TicketAlert">On</span></button>
+                    </div>
+                    <div class="DonationHolder Setting" id="ShareAlerts">
+                        <button class="InfoButton" id="ShareAlerts">Share Alerts:<br><span id="ShareAlert">On</span></button>
+                    </div>
+                    <br>
+                    <div class="DonationHolder Setting" id="FavorAlerts">
+                        <button class="InfoButton" id="FavorAlerts">Favor Alerts:<br><span id="FavorAlert">On</span></button>
+                    </div>
+                    <div class="DonationHolder Setting" id="InvAlerts">
+                        <button class="InfoButton" id="InvAlerts">Investor Alerts:<br><span id="InvAlert">On</span></button>
+                    </div>
+                    <div class="DonationHolder Setting" id="WizAlerts">
+                        <button class="InfoButton" id="WizAlerts">Wizard Alerts:<br><span id="WizAlert">On</span></button>
+                    </div>
+                    <br>
+                    <div class="DonationHolder Cloud Setting" id="CloudSave">
+                        <button class="InfoButton CloudSave" id="CloudSave">Save to<br>Cloud</button>
+                    </div>
+                    <div class="DonationHolder Cloud Setting" id="CloudLoad">
+                        <button class="InfoButton CloudLoad" id="CloudLoad">Load From<br>Cloud</button>
+                    </div>
+                    <br>
+                    <div class="SubLabel LastSaved">
+                        No Cloud Save Detected
+                    </div>
+                    <div class="SubLabel">
+                        (Game AutoSaves Locally, Cloud Saves are limited to Kongregate)
+                    </div>
+                    <div class="DonationHolder Setting" id="Discord">
+                        <button class="InfoButton" id="Discord" onclick="window.open('https://discord.gg/TtUB7nB')">Game Discord</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="BasicPopHolder" style="display:none">
+        <div class="Popup" id="BasicPopup">
+            <div class="PopHead">
+                <span class="PopTitle">Popup</span>
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuOverview">
+                    Payouts are determined by how many of the same icon you get.<br><br> You can get multiple payouts per card.
+                </div>
+                <div class="DonationHolder" id="PopConfirm">
+                    <button class="InfoButton" id="PopConfirm">Ok</button>
+                </div>
+            </div>
+        </div>
+        <div class="Popup" id="BasicConfirm" style="display:none">
+            <div class="PopHead">
+                <span class="PopTitle">Popup</span>
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuOverview">
+                    Payouts are determined by how many of the same icon you get.<br><br> You can get multiple payouts per card.
+                </div>
+                <div class="DonationHolder" id="PopCancel">
+                    <button class="InfoButton" id="PopCancel">Cancel</button>
+                </div>
+                <div class="DonationHolder" id="PopConfirm">
+                    <button class="InfoButton" id="PopConfirm">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="AchTitle">
+    Achievements
+</div>
+<div class="bButtonHolder achieve">
+    <img class="BottomButton" id="AchieveMenu" src="Images/Menu/Achieve.png"/>
+    <span class="WaitingACH">3</span>
+</div>
+<span class='AchieveTip2'>Get this one</span>
+<div class="CloudTitle">
+    Cloud Saving
+</div>
+<div class="bButtonHolder cloud">
+    <img class="BottomButton" id="CloudMenu" src="Images/Menu/Cloud.png"/>
+</div>
+
+<div class="NotesTitle">
+    Notes
+</div>
+<div class="Notes">
+    - Gravity simulates rolling<br>on a slanted table<br>
+    - Made with JS/HTML please excuse physics imperfections<br><br>
+    - If stuck, press Shift+R to<br>reset ball
+</div>
+
+<div class="GameVersion">
+    Version: v<span id="GameVersion">1.000</span>
+</div>
+
+<div class="AutoPaddleTitle">
+    Auto Paddles<br>
+    <span class="AutoPaddleToggle On">&#10003; On</span>
+    <span class="AutoPaddleToggle Off">&#10007; Off</span>
+</div>
+
+<div class="TicketsTitle" style="display:none">
+    <span class="TicTitle">Tickets<br>Available:</span><br><br><span class="AvailTickets">0</span>
+</div>
+
+</body>
+  

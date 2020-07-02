@@ -331,6 +331,7 @@ var cnExcludePostfix = [
 //原样输出的字段：(.+)
 var cnRegReplace = new Map([
     [/^You were offline for (.+) Hours. While offline you earned (.+) Points! Thanks for coming back!$/, '你离线了 $1 小时。离线时你获得 $2 点数!感谢你回来!'],
+    [/^You were offline for (.+) Minutes. While offline you earned (.+) Points! Thanks for coming back!$/, '你离线了 $1 分钟。离线时你获得 $2 点数!感谢你回来!'],
     [/^(\d+) Royal points$/, '$1 皇家点数'],
     [/^Cost: (\d+) RP$/, '成本：$1 皇家点数'],
     [/^Usages: (\d+)\/$/, '用途：$1\/'],

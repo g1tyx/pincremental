@@ -1,11 +1,10 @@
 <head>
-   <meta charset="utf-8" />
     <!--Libraries-->
-        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="decomp.min.js"></script>
+            <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="decomp.min.js"></script>        
         <script src="https://cdn.bootcdn.net/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
         <script src="matter-attractors.min.js"></script>
-        <script type="text/javascript" src="PlayFabClientApi.js"></script>
+        <script type="text/javascript" src="https://download.playfab.com/PlayFabClientApi.js"></script>
         <script src='kongregate_api.js'></script>
     <!--Google Analytics-->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146113740-8"></script>
@@ -22,10 +21,10 @@
     <!--Main Code-->
         <link rel="stylesheet" href="Code/css/Pinball.css">
         <script src="Code/js/obBall.js"></script>
-        
-        <title>弹珠增量 - PINCREMENTAL</title>
+                <title>弹珠增量 - PINCREMENTAL</title>
 </head>
-<body><script src="chs.js"></script>
+<body>
+   <body><script src="chs.js"></script>
 <script src="//likexia.gitee.io/game/zh/core.js"></script>
     <div id="HeaderHolder">
         <div id="Header">弹珠增量 - PINCREMENTAL</div>
@@ -173,6 +172,7 @@
                     </div>
                     <div class="SubLabel">
                         Pinball Mechanic Upgrades Available In Ticket Menu<br>
+                        Including Side Hole Blockers, Auto Paddles, and More!<br>
                         (More Coming Soon!)
                     </div>
                 </div>
@@ -448,8 +448,9 @@
                         <button class="CompanyUpgrade" id="AutoShares">Auto Reset<br>For Shares<br>(Customizable)</button>
                         <br><div class="CostLabel">Cost: <span class="Cost">12</span> Favors</div>
                         <div class="SubLabel">
-                        <div id="AutoStoreCustom"><label>Shares To AutoReset: </label><input type="number" id="AutoStoreAMT" min="10" value="10"><br>
-                            <label>AutoReset For Shares: </label><input type="checkbox" id="AutoStoreCheck"/>
+                        <div id="AutoStoreCustom"><label>Min Shares To AutoReset: </label><input type="number" id="AutoStoreAMT" min="10" value="10"><br>
+                            <label>AutoReset For Shares: </label><input type="checkbox" id="AutoStoreCheck"/><br>
+                            <span id="StoreLockHolder"><label title="Locks Amount From Changing on Share Multi">Lock Amount: </label><input type="checkbox" id="AutoStoreLock"/></span>
                             </div>
                         </div>
                     </div>
@@ -578,14 +579,17 @@
                         <button class="InvestorUpgrade" id="AutoCompanies">Auto Exchange<br>For Favors</button>
                         <br><div class="CostLabel">Cost: <span class="Cost">12</span> Investors</div>
                         <div class="SubLabel">
-                        <div id="AutoCompCustom"><label>Favors To AutoGet: </label><input type="number" id="AutoCompAMT" min="4" value="4"><br></div>
-                        <div id="AutoCompToggle"><label>AutoGet Favors: </label><input type="checkbox" id="AutoCompCheck"/></div>
+                        <div id="AutoCompCustom"><label>Min Favors To AutoGet: </label><input type="number" id="AutoCompAMT" min="4" value="4"><br></div>
+                        <div id="AutoCompToggle"><label>AutoGet Favors: </label><input type="checkbox" id="AutoCompCheck"/><br>
+                            <label title="Locks Amount From Changing on Favor Multi">Lock Amount: </label><input type="checkbox" id="AutoCompLock"/>
+                        </div>
+                        
                         </div>
                     </div>
                     <br>
                     <div class="InvestorHolder Binary" id="RetainBasicPermas">
                         <button class="InvestorUpgrade" id="RetainBasicPermas">Retain All<br>Basic Upgrade<br>Retainers</button>
-                        <br><div class="CostLabel">Cost: <span class="Cost">12</span> Investors</div>
+                        <br><div class="CostLabel">Cost: <span class="Cost">8</span> Investors</div>
                     </div>
                     <div class="InvestorHolder Binary" id="RetainTicPermas">
                         <button class="InvestorUpgrade" id="RetainTicPermas">Retain All<br>Ticket Upgrade<br>Retainers</button>
@@ -759,7 +763,7 @@
                         <button class="WizardUpgrade" id="AutoInvestors">Auto<br>Call In Favors<br>For Investors</button>
                         <br><div class="CostLabel">Cost: <span class="Cost">15</span> Mana</div>
                         <div class="SubLabel">
-                        <div id="AutoInvCustom"><label>Investors To AutoGet: </label><input type="number" id="AutoInvAMT" min="1" value="4"><br></div>
+                        <div id="AutoInvCustom"><label>Min Investors To AutoGet: </label><input type="number" id="AutoInvAMT" min="1" value="4"><br></div>
                         <div id="AutoInvToggle"><label>AutoGet Investors: </label><input type="checkbox" id="AutoInvCheck"/></div>
                         </div>
                     </div>
@@ -803,18 +807,21 @@
                         <div class="WizardHolder Auto" id="autoInvestorIncomeMulti">
                             <button class="WizardUpgrade" id="autoInvestorIncomeMulti">AutoBuy<br>Double Shares</button>
                             <br><div class="CostLabel">Cost: <span class="Cost">5</span> Mana</div>
-                            <!--span class="AutomationToggle On">&#10003; On</span-->
+                            <div class="AutomationToggle On" id="toggleautoInvestorIncomeMulti">&#10003; On</div>
+                            <div class="SubLabel Spacer">&nbsp;</div>
                         </div>
                         <div class="WizardHolder Auto" id="autoInvestorMulti">
                             <button class="WizardUpgrade" id="autoInvestorMulti">AutoBuy<br>Investor Multi</button>
                             <br><div class="CostLabel">Cost: <span class="Cost">5</span> Mana</div>
-                            <!--span class="AutomationToggle Off">&#10007; Off</span-->
+                            <div class="AutomationToggle On" id="toggleautoInvestorMulti">&#10003; On</div>
+                            <div class="SubLabel Spacer">&nbsp;</div>
                         </div>
                         <br>
                         <div class="WizardHolder Auto" id="autoHSE">
                             <button class="WizardUpgrade" id="autoHSE">AutoBuy<br>High Score Exponent</button>
                             <br><div class="CostLabel">Cost: <span class="Cost">5</span> Mana</div>
-                            <!--span class="AutomationToggle Off">&#10007; Off</span-->
+                            <div class="AutomationToggle Off" id="toggleautoHSE">&#10007; Off</div>
+                            <div class="SubLabel Spacer">&nbsp;</div>
                         </div>
                         <div class="SubLabel">(More Upgrades Will Likely Be Added)</div>
 
@@ -859,20 +866,34 @@
                     <div class='Achieve Unearned' id='ACHAutoBasics' data-tooltip='Automate All Machine Upgrades' data-atype='Normal' data-progresstype='Full'>The Basic Automators One</div>
                     <div class='Achieve Unearned' id='ACHAutoTicUp' data-tooltip='Automate All Ticket Upgrades' data-atype='Normal' data-progresstype='Full'>The Ticket Automators One</div>
                     <div class='Achieve Unearned' id='ACHOneFavor' data-tooltip='Sell Out For a Favor' data-atype='Normal' data-progresstype='Full'>Wait...I Can Only Get One??</div>
+                    <div class='Achieve Unearned' id='ACHBest' data-tooltip='Obtain Automatic Cash Out' data-atype='Normal' data-progresstype='Full'>The Best One</div>
                     <div class='Achieve Unearned' id='ACHRetainers' data-tooltip='Retain All Assistants' data-atype='Normal' data-progresstype='Partial'>The Retainment One</div>
-                    <div class='Achieve Unearned' id='ACHTBD' data-tooltip='Get the Next Prestige Level' data-atype='Normal' data-progresstype='Full'>The Incomplete One</div>
-<!--div class='Achieve Unearned' id='ACHMoreFavors' data-tooltip='Have 30 Favors at Once' data-atype='Levels' data-progresstype='Partial'>The MultiFavor One <span id="achNum">1</span></div-->
+                    <div class='Achieve Unearned' id='ACHShareAuto' data-tooltip='Automate Share/Arcade Prestiges' data-atype='Normal' data-progresstype='Full'>The Share Automation One</div>
+                    <div class='Achieve Unearned' id='ACHMultiFavors' data-tooltip='Exchange for 6 Favors at Once' data-atype='Levels' data-progresstype='Partial'>The Favors One <span id="achNum">1</span></div>
+                    <div class='Achieve Unearned' id='ACHOneInvestor' data-tooltip='Call in Favors for Investors' data-atype='Normal' data-progresstype='Full'>The Side Hussle One</div>
+                    <div class='Achieve Unearned' id='ACHRetRet' data-tooltip='Retain All Upgrade Retainers' data-atype='Normal' data-progresstype='Full'>The Retain Retainment One</div>
+                    <div class='Achieve Unearned' id='ACHKeepLux' data-tooltip='Keep AutoPaddles, Blockers, and Zones' data-atype='Normal' data-progresstype='Full'>The Kept Luxury One</div>
+                    <div class='Achieve Unearned' id='ACHRoboFavor' data-tooltip='Fully Automate the Favor Prestige Level' data-atype='Normal' data-progresstype='Full'>The RoboFavors One</div>
+                    <div class='Achieve Unearned' id='ACHMultiInvest' data-tooltip='Call In for 6 Investors at Once' data-atype='Levels' data-progresstype='Partial'>The Investors One <span id="achNum">1</span></div>
+                    <div class='Achieve Unearned' id='ACHTheWho' data-tooltip='Sacrifice Investors for Pinball Mana' data-atype='Normal' data-progresstype='Full'>The Who?</div>
+                    <div class='Achieve Unearned' id='ACHFingers' data-tooltip='Upgrade Your AutoPaddles' data-atype='Normal' data-progresstype='Full'>The Crazy Flipper Fingers One</div>
+                    <div class='Achieve Unearned' id='ACHForeverScore' data-tooltip='Keep High Score on Prestige' data-atype='Normal' data-progresstype='Full'>The Forever Score One</div>
+                    <div class='Achieve Unearned' id='ACHPermLux' data-tooltip='Make Pinball Mechanic Upgrades Permanent' data-atype='Normal' data-progresstype='Full'>The Permanent Luxury One</div>
+                    <div class='Achieve Unearned' id='ACHRetRetRet' data-tooltip='Retain All Upgrade Retainer Retainers' data-atype='Normal' data-progresstype='Full'>The Retain Retainer Retainers One</div>
+                    <div class='Achieve Unearned' id='ACHRoboInv' data-tooltip='Fully Automate the Investor Prestige Level' data-atype='Normal' data-progresstype='Full'>The AI Investment Portfolio One</div>
+                    <div class='Achieve Unearned' id='ACHTranscend' data-tooltip='Sacrifice for 5 Pinball Mana at Once' data-atype='Levels' data-progresstype='Full'>The Transcendant One <span id="achNum">1</span></div>
                 </div>
             </div>
         </div>
         <div class="Popup" id="CloudPopup" style="display:none">
             <div class="PopHead">
-                Cloud Saving
+                Saving Menu
                 <div class=Close></div>
             </div>
             <div class="PopBody">
                 <div class="MenuOverview">
-                    Save to the cloud to play on multiple computers and protect your save against browser cache clearing 
+                    Save to the cloud to play on multiple computers and protect your save against browser cache clearing<br><br>
+                    Game Autosaves Locally
                 </div>
                 <hr class="PostHeader">
                 <div class="SectionHead Info">Saving/Loading</div>
@@ -888,6 +909,18 @@
                     </div>
                     <div class="SubLabel">
                         (Game AutoSaves Locally, Cloud Saves are limited to Kongregate)
+                    </div>
+                    <br>
+                <div class="SectionHead Info">Export/Import Save</div>
+                    <div class="DonationHolder Export Setting" id="ExportSave">
+                        <button class="InfoButton ExportSave" id="ExportSave">Export Save</button>
+                    </div>
+                    <div class="DonationHolder Import Setting" id="ImportLoad">
+                        <button class="InfoButton ImportLoad" id="ImportLoad">Import Save</button>
+                    </div>
+                    <div class="SubLabel">Export Your Save For Safekeeping or Transfer Between Platforms</div>
+                    <div class="SubLabel" id="ImportText">
+                        &nbsp;
                     </div>
             </div>
         </div>
@@ -958,6 +991,13 @@
                         <button class="InfoButton" id="WizAlerts">Wizard Alerts:<br><span id="WizAlert">On</span></button>
                     </div>
                     <br>
+                    <div class="DonationHolder Setting" id="LossPrestiges">
+                        <button class="InfoButton" id="LossPrestiges">AutoPrestige on Loss:<br><span id="LossPrestige">Off</span></button>
+                    </div>
+                    <div class="DonationHolder Setting" id="TransparentMenus">
+                        <button class="InfoButton" id="TransparentMenus">Transparent Menus:<br><span id="TransparentMenu">Off</span></button>
+                    </div>
+                    <br>
                     <div class="DonationHolder Cloud Setting" id="CloudSave">
                         <button class="InfoButton CloudSave" id="CloudSave">Save to<br>Cloud</button>
                     </div>
@@ -1020,7 +1060,7 @@
 </div>
 <span class='AchieveTip2'>Get this one</span>
 <div class="CloudTitle">
-    Cloud Saving
+    Saving Menu
 </div>
 <div class="bButtonHolder cloud">
     <img class="BottomButton" id="CloudMenu" src="Images/Menu/Cloud.png"/>
@@ -1045,13 +1085,39 @@
     <span class="AutoPaddleToggle Off">&#10007; Off</span>
 </div>
 
-<div class="TicketsTitle" style="display:none">
-    <span class="TicTitle">Tickets<br>Available:</span><br><br><span class="AvailTickets">0</span>
+<div id="TheDiscord">
+    <span id="Connect">Connect</span>
+    <img id="DiscordImg" src="Images/Support/discordMain.jpg"  onclick="window.open('https://discord.gg/TtUB7nB')"/>
+</div>
+<div id="TheApps">
+    <span id="AppsTitle">Platforms</span>
+    <img id="Apple" src="Images/Support/AppStore.png"  onclick="window.open('https://apps.apple.com/app/apple-store/id1521398832?pt=120450796&ct=Kongregate&mt=8')"/><br>
+    <img id="Google" src="Images/Support/GooglePlay.png"  onclick="window.open('https://play.google.com/store/apps/details?id=com.Makopaz.Pincremental&hl=en_US&referrer=utm_source%3DKongregate%26utm_campaign%3DInGame')"/>
 </div>
 
-</body>
- <!--客服 开始-->
+<!--div class="TicketsTitle" style="display:none">
+    <span class="TicTitle">Tickets<br>Available:</span><br><br><span class="AvailTickets">0</span>
+</div-->
+<!--div class="AppStores">
+    <div class="iOS"></div>
+    <div class="Android"></div>
+</div-->
+<div id="SideHolder">
+    <div class="SideTitle SideTickets" id="TicketsTitle" style="display: none;">Tickets<br>Available:</div>
+    <div class="SideNum SideTickets AvailTickets" id="TicketsSNUM" style="display: none;">0</div>
+    <div class="SideTitle SideShares" id="SharesTitle" style="display: none;">Shares<br>Available:</div>
+    <div class="SideNum SideShares AvailShares" id="SharesSNUM" style="display: none;">0</div>
+    <div class="SideTitle SideFavors" id="FavorsTitle" style="display: none;">Favors<br>Available:</div>
+    <div class="SideNum SideFavors AvailFavors" id="FavorsSNUM" style="display: none;">0</div>
+    <div class="SideTitle SideInvestors" id="InvestorsTitle" style="display: none;">Investors<br>Available:</div>
+    <div class="SideNum SideInvestors AvailableInvestors" id="InvestorsSNUM" style="display: none;">0</div>
+    <div class="SideTitle SideMana" id="ManaTitle" style="display: none;">Mana<br>Available:</div>
+    <div class="SideNum SideMana AvailableMana" id="ManaSNUM" style="display: none;">0</div>
+</div>
+
+</body> <!--客服 开始-->
 <link rel="stylesheet" href="//likexia.gitee.io/game/css/kf.css" type="text/css" media="screen" charset="utf-8">
 <script src="//likexia.gitee.io/game/js/kf.js"></script>
 <!-- 客服 结束 -->
+
   

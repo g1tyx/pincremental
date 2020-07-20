@@ -104,6 +104,46 @@
     left: 500px;
     position: fixed;
 }
+.iOS{
+    background: url("../../Images/Support/AppStore.png");
+    background-size: cover;
+    position: fixed;
+    top: 285px;
+    left: 15px;
+    height: 25.5px;
+    width: 85px;
+}
+.Android{
+    background: url("../../Images/Support/GooglePlay.png");
+    background-size: cover;
+    position: fixed;
+    top: 315px;
+    left: 15px;
+    height: 25px;
+    width: 85px;
+}
+#SideHolder{
+    right: 19px;
+    top: 215px;
+    text-align: center;
+    position: fixed;
+    width: 53px
+}
+.SideTitle{
+    text-align: center;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem;
+    line-height: .65rem;
+}
+.SideNum{
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    color: gold
+}
 #BottomButtons{
     width: 100%;
     height: 55px;
@@ -124,6 +164,7 @@
     height:auto;
     width: 55px;
     height: 55px;
+    cursor: pointer;
 }
 #WizardMenu, #PointMenu,#ArcadeMenu,#CompanyMenu,#InvestorMenu{
     padding: 7.75px;
@@ -161,7 +202,7 @@
 }
 .Popup{
     position: fixed;
-    background-color: white;/*rgb(218, 218, 218);*/
+    background-color: white;/*rgba(255,255,255,.5);*/
     height: 80vh;
     width: 65vw;
     margin-left: 17.5vw;
@@ -170,6 +211,7 @@
     margin-bottom: 10vh;
     border-radius: 10px;
     font-family: "Times";
+    
 }
 .PopHead{
     background-image: url("../../Images/PinballHeader.png");
@@ -318,7 +360,7 @@
 }
 .CloudTitle{
     text-align: center;
-	left: 20px;
+	left: 21.5px;
     top: 70px;
     position: fixed;
     font-family: 'Hind', sans-serif;
@@ -347,12 +389,61 @@
     font-size: 8.2px;
     width: 125px;
 }
+.AppTitle{
+    text-align: center;
+	left: 25px;
+    top: 265px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem
+}
 .bButtonHolder.cloud{
     position: fixed;
     top: 85px;
     Left: -27.5px
 }
-.TicketsTitle{
+#TheDiscord{
+    position: fixed;
+    top: 282.5px;
+    left: 17.5px
+}
+#DiscordImg{
+    width: 75px;
+    cursor: pointer;
+}
+#TheApps{
+    position: fixed;
+    top: 335.5px;
+    left: 17.5px
+}
+#Apple,#Google{
+    width: 75px;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+#Connect{
+    text-align: center;
+	left: 35px;
+    top: 265px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem
+}
+#AppsTitle{
+    text-align: center;
+	left: 30px;
+    top: 320px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem
+}
+/*.TicketsTitle{
     text-align: center;
 	right: 17.5px;
     top: 212.5px;
@@ -368,7 +459,7 @@
 }
 .TicketsTitle .AvailTickets{
     color: gold
-}
+}*/
 .AutoPaddleTitle{
     text-align: center;
 	right: 83.5px;
@@ -395,12 +486,13 @@
 }
 .AutomationToggle{
     border: 1px solid grey;
-    padding: 2px;
-    padding-right: 3px;
-    padding-left: 3px;
     cursor: pointer;
+    line-height: 16px;
     opacity: .8;
     font-size: 9px;
+    height: 16px;
+    width: 28px;
+    margin: auto
 }
 .AutomationToggle.On{
     background-color: green;
@@ -408,6 +500,11 @@
 }
 .AutomationToggle.Off{
     background-color: red;
+}
+.SubLabel.Spacer{
+    height: 16px;
+    font-size: 16px;
+    line-height: 16px;
 }
 #CloudMenu{
     height: 45px;
@@ -535,6 +632,12 @@
 #InfoPopup .ScrollBod .InfoButton{
     width: 97px;
     height: 31px;
+    margin-top: 9px;
+    font-size: 9px;
+}
+#InfoPopup .ScrollBod .InfoButton#TransparentMenus,#InfoPopup .ScrollBod .InfoButton#LossPrestiges{
+    width: 125px;
+    height: 31px;
     margin-top: 11.5px;
     font-size: 9px;
 }
@@ -597,16 +700,17 @@
     margin-right: 5%;
     font-size: 13px;
 }
-#PointPopup,#TicketPopup, #InfoPopup, #ArcadePopup, #CompanyPopup,#InvestorPopup{
+#PointPopup,#TicketPopup, #ArcadePopup, #CompanyPopup,#InvestorPopup{
     height: 90vh;
     margin-top: 5vh;
     margin-bottom: 5vh;
 }
-#WizardPopup{
+#WizardPopup, #InfoPopup{
     height: 94vh;
     margin-top: 3vh;
     margin-bottom: 3vh;
 }
+
 #CloudPopup{
     height: 40vh;
     margin-top: 30vh;

@@ -59,7 +59,7 @@ body {
 
 .trigger {
   appearance: none;
-	position: absolute;
+	position: fixed;
 	width: 80px;
 	height: 80px;
 	bottom: 10px;
@@ -77,14 +77,14 @@ body {
 }
 
 .left-trigger {
-	margin-left: -185px;
+	left: 100px;
 }
 
 .right-trigger {
-	margin-left: 137px;
+	right: 150px;
 }
 
-@-moz-document url-prefix() {
+/*@-moz-document url-prefix() {
     .left-trigger {
 		margin-left: -370px;
 	}
@@ -92,7 +92,7 @@ body {
 	.right-trigger {
 		margin-left: 274px;
 	}
-}
+}*/
 
 canvas {
 	overflow: hidden;

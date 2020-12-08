@@ -91,7 +91,7 @@ if(!PlayFab._internalSettings) {
 
                 var xhr = new XMLHttpRequest();
                 // window.console.log("URL: " + completeUrl);
-                xhr.open("POST", completeUrl, true);
+//                xhr.open("POST", completeUrl, true);
 
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.setRequestHeader("X-PlayFabSDK", "JavaScriptSDK-" + PlayFab._internalSettings.sdkVersion);
@@ -838,28 +838,29 @@ PlayFab.ClientApi = {
     },
 
     LoginWithKongregate: function (request, callback, customData, extraHeaders) {
-        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
-        // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
-        // Deep-copy the authenticationContext here to safely update it
-        var authenticationContext = JSON.parse(JSON.stringify(PlayFab._internalSettings.authenticationContext));
-        var overloadCallback = function (result, error) {
-            if (result != null) {
-                if(result.data.SessionTicket != null) {
-                    PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
-                }
-                if (result.data.EntityToken != null) {
-                    PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
-                }
-                // Apply the updates for the AuthenticationContext returned to the client
-                authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
-                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
-            }
-            if (callback != null && typeof (callback) === "function")
-                callback(result, error);
-        };
-        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithKongregate", request, null, overloadCallback, customData, extraHeaders);
+//        request.TitleId = PlayFab.settings.titleId ? PlayFab.settings.titleId : request.TitleId; if (!request.TitleId) throw PlayFab._internalSettings.errorTitleId;
+//        // PlayFab._internalSettings.authenticationContext can be modified by other asynchronous login attempts
+//        // Deep-copy the authenticationContext here to safely update it
+//        var authenticationContext = JSON.parse(JSON.stringify(PlayFab._internalSettings.authenticationContext));
+//        var overloadCallback = function (result, error) {
+//            if (result != null) {
+//                if(result.data.SessionTicket != null) {
+//                    PlayFab._internalSettings.sessionTicket = result.data.SessionTicket;
+//                }
+//                if (result.data.EntityToken != null) {
+//                    PlayFab._internalSettings.entityToken = result.data.EntityToken.EntityToken;
+//                }
+//                // Apply the updates for the AuthenticationContext returned to the client
+//                authenticationContext = PlayFab._internalSettings.UpdateAuthenticationContext(authenticationContext, result);
+//                PlayFab.ClientApi._MultiStepClientLogin(result.data.SettingsForUser.NeedsAttribution);
+//            }
+//            if (callback != null && typeof (callback) === "function")
+//                callback(result, error);
+//        };
+//        PlayFab._internalSettings.ExecuteRequestWrapper("/Client/LoginWithKongregate", request, null, overloadCallback, customData, extraHeaders);
         // Return a Promise so that multiple asynchronous calls to this method can be handled simultaneously with Promise.all()
-        return new Promise(function(resolve){resolve(authenticationContext);});
+//        return new Promise(function(resolve){resolve(authenticationContext);});
+        return null
     },
 
     LoginWithNintendoServiceAccount: function (request, callback, customData, extraHeaders) {

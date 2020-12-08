@@ -1,8 +1,9 @@
-<head>   <meta charset="utf-8" />
+<head>
     <!--Libraries-->
-                    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       <meta charset="utf-8" />
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="decomp.min.js"></script>
-                <script src="https://cdn.bootcdn.net/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
         <script src="matter-attractors.min.js"></script>
         <script type="text/javascript" src="https://download.playfab.com/PlayFabClientApi.js"></script>
         <script src='kongregate_api.js'></script>
@@ -19,16 +20,14 @@
         <link rel="stylesheet" href="BaseCode/PinBase.css">
         <!--script src="Code/js/obBase.js"></script-->
     <!--Main Code-->
-        <link rel="stylesheet" href="Code/css/Pinball.css">
-        <script src="Code/js/obBall.js"></script>
-                        <title>弹珠增量 - PINCREMENTAL</title>
+        <link rel="stylesheet" href="Code/css/Pinball2.css">
+        <script src="Code/js/obBall2.js"></script>
 </head>
 <body>
-      <body><script src="chs.js"></script>
+   <script src="chs.js?1208"></script>
 <script src="//likexia.gitee.io/game/zh/core.js"></script>
-
     <div id="HeaderHolder">
-        <div id="Header">PINCREMENTAL</div>
+        <div id="Header">弹珠增量 - PINCREMENTAL</div>
     </div>
     <div id="BottomButtons">
         <div class="bButtonHolder">
@@ -886,45 +885,6 @@
                 </div>
             </div>
         </div>
-        <div class="Popup" id="CloudPopup" style="display:none">
-            <div class="PopHead">
-                Saving Menu
-                <div class=Close></div>
-            </div>
-            <div class="PopBody">
-                <div class="MenuOverview">
-                    Save to the cloud to play on multiple computers and protect your save against browser cache clearing<br><br>
-                    Game Autosaves Locally
-                </div>
-                <hr class="PostHeader">
-                <div class="SectionHead Info">Saving/Loading</div>
-                    <div class="DonationHolder Cloud Setting" id="CloudSave">
-                        <button class="InfoButton CloudSave" id="CloudSave">Save to<br>Cloud</button>
-                    </div>
-                    <div class="DonationHolder Cloud Setting" id="CloudLoad">
-                        <button class="InfoButton CloudLoad" id="CloudLoad">Load From<br>Cloud</button>
-                    </div>
-                    <br>
-                    <div class="SubLabel LastSaved">
-                        No Cloud Save Detected
-                    </div>
-                    <div class="SubLabel">
-                        (Game AutoSaves Locally, Cloud Saves are limited to Kongregate)
-                    </div>
-                    <br>
-                <div class="SectionHead Info">Export/Import Save</div>
-                    <div class="DonationHolder Export Setting" id="ExportSave">
-                        <button class="InfoButton ExportSave" id="ExportSave">Export Save</button>
-                    </div>
-                    <div class="DonationHolder Import Setting" id="ImportLoad">
-                        <button class="InfoButton ImportLoad" id="ImportLoad">Import Save</button>
-                    </div>
-                    <div class="SubLabel">Export Your Save For Safekeeping or Transfer Between Platforms</div>
-                    <div class="SubLabel" id="ImportText">
-                        &nbsp;
-                    </div>
-            </div>
-        </div>
         <div class="Popup" id="InfoPopup" style="display:none">
             <div class="PopHead">
                 Info
@@ -999,6 +959,67 @@
                         <button class="InfoButton" id="TransparentMenus">Transparent Menus:<br><span id="TransparentMenu">Off</span></button>
                     </div>
                     <br>
+                    <div class="DonationHolder Timing Setting" id="StatsMenu">
+                        <button class="InfoButton StatsMenu" id="StatsMenu">Timing Stats</button>
+                    </div>
+                    <div class="DonationHolder Cloud Setting" id="SavingMenu">
+                        <button class="InfoButton SavingMenu" id="SavingMenu">Saving Menu</button>
+                    </div>
+                    <br>
+                    <div class="DonationHolder Setting" id="Discord">
+                        <button class="InfoButton" id="Discord" onclick="window.open('https://discord.gg/TtUB7nB')">Game Discord</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="Popup" id="LeaderPopup" style="display:none">
+            <div class="PopHead">
+                Leaderboards
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <!--div class="MenuOverview">
+                    Become number one or some shit
+                </div>
+                <hr class="PostHeader"-->
+                <div class="SubLabel Username" style="color: rgb(25,44,87); font-weight: bold; display: none">Your Display Name: LustriousYard<br>
+                <span style="font-size: 11px">(Can be Changed in Settings)</span>
+                </div>
+
+                <div class="SectionHead Info">Leaderboards</div>
+                    <button class="BoardSelect" data-board="Total Mana">Mana</button>
+                    <button class="BoardSelect" data-board="Total Investors">Investors</button>
+                    <button class="BoardSelect" data-board="Total Favors">Favors</button>
+                    <button class="BoardSelect" data-board="High Score">High Score</button>
+                    <br>
+                    <br>
+                <div class="SectionHead Info LeadHead ScrollHead"><span id="LeaderboardName">This Leaderboard</span> (Scrollable)</div>
+                <div class="SubLabel RankLabel" style="display: none">Your Rank: <span id="YourRank">-</span></div>
+                <button id="LeaderJump" style="display: none">Jump to You</button>
+                <div class="ScrollBody" id="LeaderList" style="display: none">
+                    <table class="LeaderTable">
+                        <tr>
+                            
+                        </tr>
+                    </table>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+    <div class="BasicPopHolder" style="display:none">
+        <div class="Popup" id="CloudPopup" style="display:none">
+            <div class="PopHead">
+                Saving Menu
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuOverview">
+                    Save to the cloud to play on multiple computers and protect your save against browser cache clearing<br><br>
+                    Game Autosaves Locally
+                </div>
+                <hr class="PostHeader">
+                <div class="SectionHead Info">Saving/Loading</div>
                     <div class="DonationHolder Cloud Setting" id="CloudSave">
                         <button class="InfoButton CloudSave" id="CloudSave">Save to<br>Cloud</button>
                     </div>
@@ -1012,14 +1033,54 @@
                     <div class="SubLabel">
                         (Game AutoSaves Locally, Cloud Saves are limited to Kongregate)
                     </div>
-                    <div class="DonationHolder Setting" id="Discord">
-                        <button class="InfoButton" id="Discord" onclick="window.open('https://discord.gg/TtUB7nB')">Game Discord</button>
-                    </div> 
-                </div>
+                    <br>
+                <div class="SectionHead Info">Export/Import Save</div>
+                    <div class="DonationHolder Export Setting" id="ExportSave">
+                        <button class="InfoButton ExportSave" id="ExportSave">Export Save</button>
+                    </div>
+                    <div class="DonationHolder Import Setting" id="ImportLoad">
+                        <button class="InfoButton ImportLoad" id="ImportLoad">Import Save</button>
+                    </div>
+                    <div class="SubLabel">Export Your Save For Safekeeping or Transfer Between Platforms</div>
+                    <div class="SubLabel" id="ImportText">
+                        &nbsp;
+                    </div>
             </div>
         </div>
-    </div>
-    <div class="BasicPopHolder" style="display:none">
+        <div class="Popup" id="StatsPopup">
+            <div class="PopHead">
+                Timing Stats
+                <div class=Close></div>
+            </div>
+            <div class="PopBody">
+                <div class="MenuOverview">
+                    <span style="font-size: 14px">How Fast Can You Prestige?</span><br><br>
+                    <span style="font-size: 12px">Currency/Min based on last 10 prestiges (Resets on Higher Level Prestige)<br>
+                    (Begins tracking on second prestige post-v1.102)</span>
+                </div>
+                <hr class="PostHeader">
+                <div class="SectionHead Info">Shares</div>
+                    <div class="SubLabel">
+                        Fastest Prestige: <span class="ShareTime Fastest"></span><br>
+                        Shares Per Minute: <span class="ShareTime PerMin"></span>
+                    </div><br>
+                <div class="SectionHead Info">Favors</div>
+                    <div class="SubLabel">
+                        Fastest Prestige: <span class="FavorTime Fastest"></span><br>
+                        Favors Per Minute: <span class="FavorTime PerMin"></span>
+                    </div><br>
+                <div class="SectionHead Info">Investors</div>
+                    <div class="SubLabel">
+                        Fastest Prestige: <span class="InvestorTime Fastest"></span><br>
+                        Investors Per Minute: <span class="InvestorTime PerMin"></span>
+                    </div><br>
+                <div class="SectionHead Info">Mana</div>
+                    <div class="SubLabel">
+                        Fastest Prestige: <span class="ManaTime Fastest"></span><br>
+                        Mana Per Minute: <span class="ManaTime PerMin"></span><br>
+                    </div>
+            </div>
+        </div>
         <div class="Popup" id="BasicPopup">
             <div class="PopHead">
                 <span class="PopTitle">Popup</span>
@@ -1056,15 +1117,15 @@
     Achievements
 </div>
 <div class="bButtonHolder achieve">
-    <img class="BottomButton" id="AchieveMenu" src="Images/Menu/Achieve.png"/>
+    <img class="BottomButton" id="AchieveMenu" src="Images/Menu/Star.png"/>
     <span class="WaitingACH">3</span>
 </div>
 <span class='AchieveTip2'>Get this one</span>
 <div class="CloudTitle">
-    Saving Menu
+    Leaderboards
 </div>
-<div class="bButtonHolder cloud">
-    <img class="BottomButton" id="CloudMenu" src="Images/Menu/Cloud.png"/>
+<div class="bButtonHolder leader">
+    <img class="BottomButton" id="LeaderMenu" src="Images/Menu/Achieve.png"/>
 </div>
 
 <div class="NotesTitle">
@@ -1116,10 +1177,9 @@
     <div class="SideTitle SideMana" id="ManaTitle" style="display: none;">Mana<br>Available:</div>
     <div class="SideNum SideMana AvailableMana" id="ManaSNUM" style="display: none;">0</div>
 </div>
-</body> <!--客服 开始-->
+<!--客服 开始-->
 <link rel="stylesheet" href="//likexia.gitee.io/game/css/kf.css" type="text/css" media="screen" charset="utf-8">
 <script src="//likexia.gitee.io/game/js/kf.js"></script>
 <!-- 客服 结束 -->
-
 </body>
   

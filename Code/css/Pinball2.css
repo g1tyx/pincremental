@@ -1,0 +1,1367 @@
+@font-face {
+    font-family: 'casino';
+    src: url('../../Images/Support/seguibl.ttf');
+}
+
+#HeaderHolder {
+    width: 100vw;
+    text-align: center;
+    margin-bottom: 10px;
+    height: 50px;
+    top: 0;
+    padding-top: 12px;
+    background-image: url("../../Images/PinballHeader.png");
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+#Header {
+    font-size: 24px;
+    font-family: 'casino';
+    color: white
+}
+.TotalScoreDisplay{
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    font-family: 'Hind', sans-serif;
+    margin-top: -3px;
+}
+.TotalMulti{
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: 10px;
+    font-family: 'Hind', sans-serif;
+    margin-top: -7px;
+}
+.ExtraLife{
+    position: fixed;
+    z-index: 1;
+    height: 28px;
+    width: 28px;
+    background-color: white;
+    border-radius: 50%;
+    right: 96px;
+}
+#Life1{
+    bottom: 22.5px;
+}
+#Life2{
+    bottom: 52px;
+}
+#Life3{
+    bottom: 81.5px;
+}
+#Life4{
+    bottom: 111px;
+}
+#Life5{
+    bottom: 140.5px;
+}
+.MultiZone{
+    position: fixed;
+    z-index: 1;
+    height: 40px;
+    width: 65px;
+    top: 120px;
+    text-align: center;
+    line-height: 40px;
+    
+}
+#MZ1{
+    right: 275px;
+}
+#MZ2{
+    right: 360px;
+}
+.MultiZone.Off{
+    background-color: grey;
+    opacity: .10;
+}
+.MultiZone.On{
+    background-color: green;
+    opacity: .25;
+}
+#SettingsLink{
+    color: rgb(50, 50, 249);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.Relaunch{
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    color: #dee2e6;
+    font-size: 10px;
+    word-wrap: normal;
+    overflow-x: visible;
+    width: 53px;
+    height: 53px;
+    padding: 0px;
+    text-align: center;
+    line-height: 12px;
+    top: 565px;
+    left: 500px;
+    position: fixed;
+}
+.iOS{
+    background: url("../../Images/Support/AppStore.png");
+    background-size: cover;
+    position: fixed;
+    top: 285px;
+    left: 15px;
+    height: 25.5px;
+    width: 85px;
+}
+.Android{
+    background: url("../../Images/Support/GooglePlay.png");
+    background-size: cover;
+    position: fixed;
+    top: 315px;
+    left: 15px;
+    height: 25px;
+    width: 85px;
+}
+
+#SideHolder{
+    right: 19px;
+    top: 215px;
+    text-align: center;
+    position: fixed;
+    width: 53px
+}
+.SideTitle{
+    text-align: center;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem;
+    line-height: .65rem;
+}
+.SideNum{
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    color: gold
+}
+#BottomButtons{
+    width: 100%;
+    height: 55px;
+    background-image: linear-gradient(to bottom, rgb(65,80,110), rgb(35,40,54));/*rgb(25,44,87));rgb(9,73,118));*/
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    text-align: justify;
+}
+.bButtonHolder{
+    height: 55px;
+    display: inline-block;
+    text-align: center;
+}
+.BottomButton{
+    max-width:100%;
+    height:auto;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+}
+#WizardMenu, #PointMenu,#ArcadeMenu,#CompanyMenu,#InvestorMenu{
+    padding: 7.75px;
+    height: 37.5px;
+    width: 37.5px;
+}
+#TicketMenu{
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+    height: 50px;
+    width: 55px;
+}
+.bButtonHolder.achieve{
+    position: fixed;
+    top: 83px;
+    right: -45px
+}
+#AchieveMenu{
+    height: 45px;
+    width: 45px;
+}
+.bButtonHolder.achieve{
+    width: 45px;
+    margin-right: 19px;
+    padding-left: 7.5%;
+    padding-right: 7.5%;
+}
+.PopupHolder{
+    background-color: rgba(105, 105, 105,.6);;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    z-index: 100;
+}
+.Popup{
+    position: fixed;
+    background-color: white;/*rgba(255,255,255,.5);*/
+    height: 80vh;
+    width: 65vw;
+    margin-left: 17.5vw;
+    margin-right: 17.5vw;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    border-radius: 10px;
+    font-family: "Times";
+    
+}
+.PopHead{
+    background-image: url("../../Images/PinballHeader.png");
+    height: 30px;
+    color: white;
+    font-style: italic;
+    font-family: "Calibri";
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 10px;
+}
+.Close{
+    background-image: url("../../Images/Close.png");
+    Top: 5px;
+    right: 5px;
+    height: 40px;
+    width: 40px;
+    background-size: cover;
+    position: absolute;
+    z-index: 200;
+}
+.PopBody{
+    text-align: center;
+    width: 100%
+}
+.MenuOverview{
+    font-style: italic;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1%;
+    margin-bottom: 3%;
+}
+#ArcadePopup .MenuOverview{
+    font-style: italic;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    font-size: 13px;
+}
+.Upgrade{
+    width: 125px;
+    border-radius: 10%;
+    height: 40px;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+    
+}
+.Upgrade:disabled{
+    background-color: grey;
+    box-shadow: 0 0px #666;
+}
+.Upgrade:active:not(:disabled) {
+    background-color: #3e8e41;
+    box-shadow: 0 1px #666;
+    transform: translateY(3px);
+  }
+.UpgradeHolder{
+    display: inline-block;
+    margin-bottom: 7px;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: -5px;
+}
+.Upgrade.TwoLine{
+    padding: 0px;
+}
+.CostLabel{
+    padding-top: 5px;
+    font-size: 14px;
+    font-style: italic
+}
+.Alt .CostLabel{
+    padding-top: 5px;
+    font-size: 11px;
+    font-style: italic
+}
+.SubLabel{
+    font-size: 14px;
+    font-style: italic
+}
+.UpgradeAlt.SubLabel,.UpgradeHolder .SubLabel,.TicUpgradeHolder .SubLabel{
+    font-size: 11px;
+    font-style: normal
+}
+.UpgradeHolder.Alt,.TicUpgradeHolder.Alt{
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: -5px;
+}
+.Upgrade.Alt{
+    border-radius: 0px;
+    width: 55px;
+}
+.UpgradeGroup{
+    margin-bottom: 20px;
+    margin-top: 15px
+}
+#TicketPopup .UpgradeGroup{
+    margin-bottom: 15px;
+    margin-top: 7.5px
+}
+.TicUpgradeHolder.Alt .Upgrade.Alt{
+    height: 30px;
+}
+
+.Disclaimer{
+    margin-top: -135;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    font-size: 11px;
+}
+#ArrowKeys{
+    padding-right: 0px;
+    font-family: 'Hind', sans-serif;
+    height: 16px;
+    line-height: 16px;
+}
+.AchTitle{
+    text-align: center;
+	right: 10px;
+    top: 70px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem
+}
+.CloudTitle{
+    text-align: center;
+	left: 18.5px;
+    top: 70px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem
+}
+.NotesTitle{
+    text-align: center;
+	left: 38.5px;
+    top: 150px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem
+}
+.Notes{
+    text-align: left;
+	left: 10px;
+    top: 165px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: 8.2px;
+    width: 125px;
+}
+.AppTitle{
+    text-align: center;
+	left: 25px;
+    top: 265px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem
+}
+.bButtonHolder.leader{
+    position: fixed;
+    top: 85px;
+    Left: -27.5px
+}
+#TheDiscord{
+    position: fixed;
+    top: 282.5px;
+    left: 17.5px
+}
+#DiscordImg{
+    width: 75px;
+    cursor: pointer;
+}
+#TheApps{
+    position: fixed;
+    top: 335.5px;
+    left: 17.5px
+}
+#Apple,#Google,#Steam{
+    width: 75px;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+#Connect{
+    text-align: center;
+	left: 35px;
+    top: 265px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem
+}
+#AppsTitle{
+    text-align: center;
+	left: 30px;
+    top: 320px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem
+}
+/*.TicketsTitle{
+    text-align: center;
+	right: 17.5px;
+    top: 212.5px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    font-size: 1.25rem;
+    line-height: 10px;
+}
+.TicketsTitle .TicTitle{
+    font-size: .65rem;
+    text-transform: uppercase;
+}
+.TicketsTitle .AvailTickets{
+    color: gold
+}*/
+.AutoPaddleTitle{
+    text-align: center;
+	right: 83.5px;
+    top: 585.5px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem;
+}
+.AutoPaddleToggle{
+    border: 1px solid grey;
+    padding: 2px;
+    padding-right: 3px;
+    padding-left: 3px;
+    cursor: pointer;
+}
+.AutoPaddleToggle.On{
+    background-color: green;
+    
+}
+.AutoPaddleToggle.Off{
+    background-color: red;
+}
+.AutomationToggle{
+    border: 1px solid grey;
+    cursor: pointer;
+    line-height: 16px;
+    opacity: .8;
+    font-size: 9px;
+    height: 16px;
+    width: 28px;
+    margin: auto
+}
+.AutomationToggle.On{
+    background-color: green;
+    
+}
+.AutomationToggle.Off{
+    background-color: red;
+}
+.SubLabel.Spacer{
+    height: 16px;
+    font-size: 16px;
+    line-height: 16px;
+}
+#LeaderMenu{
+    height: 50px;
+    width: 50px;
+}
+.bButtonHolder.leader{
+    width: 65px;
+    margin-right: 19px;
+    padding-left: 7.5%;
+    padding-right: 7.5%;
+}
+.lifetime-high-score {
+	text-align: center;
+	right: 17.5px;
+    top: 150px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem
+}
+.lifetime-high-score span {
+	font-size: 2.1125rem;
+}
+.ToPlay {
+	text-align: center;
+	Left: 7.5px;
+    top: 150px;
+    width: 125px;
+    position: fixed;
+    font-family: 'Hind', sans-serif;
+    color: #dee2e6;
+    text-transform: uppercase;
+    font-size: .65rem;
+}
+.Prestige{
+    width: 125px;
+    border-radius: 10%;
+    height: 60px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: White;
+    background: url("../../Images/Support/TicketBackground.png");
+    background-size: cover;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+    margin-bottom: 7.5px;
+}
+.Prestige:disabled{
+    background-color: grey;
+    box-shadow: 0 0px #666;
+    filter: grayscale(1);
+}
+.Prestige:active:not(:disabled) {
+    background-color: #853e8e;
+    box-shadow: 0 1px #666;
+    transform: translateY(3px);
+  }
+.EquityPrestige{
+    width: 110px;
+    border-radius: 10%;
+    height: 60px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: White;
+    text-shadow: 0 0 10px #000;
+    background: url("../../Images/Support/Equity.png");
+    background-size: cover;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+    margin-bottom: 7.5px;
+}
+.EquityPrestige:disabled{
+    background-color: grey;
+    box-shadow: 0 0px #666;
+    filter: grayscale(1);
+}
+.EquityPrestige:active:not(:disabled) {
+    background-color: #853e8e;
+    box-shadow: 0 1px #666;
+    transform: translateY(3px);
+  }
+  .InfoButton{
+    width: 125px;
+    border-radius: 10%;
+    height: 40px;
+    font-weight: bold;
+    margin-top: 15px;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(19,148,194);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+    
+}
+.InfoButton:disabled{
+    background-color: grey;
+    box-shadow: 0 0px #666;
+}
+.InfoButton:active:not(:disabled) {
+    background-color: rgb(25,44,87);
+    box-shadow: 0 1px #666;
+    transform: translateY(3px);
+}
+#InfoPopup .ScrollBod .InfoButton{
+    width: 97px;
+    height: 31px;
+    margin-top: 9px;
+    font-size: 9px;
+}
+#InfoPopup .ScrollBod .InfoButton#TransparentMenus,#InfoPopup .ScrollBod .InfoButton#LossPrestiges{
+    width: 145px;
+    height: 31px;
+    margin-top: 11.5px;
+    font-size: 9px;
+}
+#InfoPopup .ScrollBod .SubLabel{
+    font-size: 10.5px;
+    margin-top: 1px;
+}
+#InfoPopup .ScrollBod .DonationHolder{
+    margin-bottom: 4px;
+    margin-left: 2px;
+    margin-right: 2px
+}
+.Donation{
+    width: 115px;
+    border-radius: 10%;
+    height: 40px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 11px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+    
+}
+.Donation:disabled{
+    background-color: grey;
+    box-shadow: 0 0px #666;
+}
+.Donation:active:not(:disabled) {
+    background-color: #3e8e41;
+    box-shadow: 0 1px #666;
+    transform: translateY(3px);
+}
+.DonationHolder{
+    margin-bottom: 7px;
+    margin-right: 3.5px;
+    margin-left: 3.5px;
+    display: inline-block;
+}
+.Donation.TwoLine{
+    padding: 0px;
+}
+.DonationHolder .CostLabel{
+    font-weight: bold
+}
+.MenuCurrency{
+    font-weight: bold;
+    font-style: italic;
+    color:rgb(25,44,87)
+}
+#InfoPopup .MenuOverview,#StatsPopup .MenuOverview{
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 13px;
+}
+#PointPopup,#TicketPopup, #ArcadePopup, #CompanyPopup,#InvestorPopup{
+    height: 90vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+#WizardPopup, #InfoPopup{
+    height: 94vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+#CloudPopup{
+    height: 40vh;
+    margin-top: 30vh;
+    margin-bottom: 30vh;
+}
+#ComingSoon{
+    position: fixed;
+    height: 90vh;
+    width: 65vw;
+    z-index: 10;
+    text-align: center;
+    background-color: rgba(211, 208, 208, 0.5)
+}
+#ComingSoonText{
+    margin-top: 190px;
+    font-size: 20px;
+    font-style: italic;
+    font-family: "Calibri";
+    font-size: 25px;
+    text-shadow: 0 0 10px #000;
+}
+.dCurrent{
+    font-size: 12px;
+}
+.Cloud .InfoButton{
+    background: url("../../Images/Support/Cloud.png");
+    background-size: cover;
+}
+.Timing .InfoButton{
+    background: url("../../Images/Support/Timing.png");
+    background-size: cover;
+    text-shadow: 0 0 10px #000;
+}
+#StoreIcon{
+    max-width:100%;
+    height:auto;
+    width: 50px;
+    height: 50px;
+    margin-top: 0px;
+}
+.BuyStoreHolder{
+    margin-top: -10px;
+}
+.BuyStoreButton{
+    width: 135px;
+    border-radius: 10%;
+    height: 40px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: -5px;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background: url("../../Images/Support/Tron.png");
+    background-size: cover;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+    padding-top: 5px;
+    filter: grayscale(0);
+}
+.BuyStoreButton:disabled{
+    background-color: grey;
+    filter: grayscale(1);
+    box-shadow: 0 0px #666;
+}
+.BuyStoreButton:active:not(:disabled) {
+    background-color: Black;
+    box-shadow: 0 1px #666;
+    transform: translateY(3px);
+    filter: grayscale(0);
+}
+.ScrollBody{
+    overflow-y: scroll;
+    height: 215px;
+}
+.SectionHead{
+    font-weight: bold;
+    margin-bottom: 1%;
+    text-decoration: underline;
+}
+sup{
+    margin-left: 2px;
+    margin-right: -6.5px;
+    font-size: 8px;
+    font-weight: bold;
+}
+.StoreOverview{
+    font-style: italic;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+    font-size: 13px;
+    margin-bottom: -15px;
+}
+#StoreMenu{
+    filter: grayscale(100%)
+}
+.StoreHolder{
+    display: inline-block;
+    margin-bottom: 7px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+#ArcadePopup .Upgrade{
+    height: 55px;
+    width: 140px;
+}
+input[type=number]{
+    outline: none;
+    border: none;
+    width: 47px;
+    height: 20px;
+    font-size: 12px;
+}
+
+
+/*----Company----*/
+    #CompanyPopup .MenuOverview{
+        font-style: italic;
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: 13px;
+
+    }
+    #CompanyPopup .SectionHead{
+        font-style: italic
+    }
+    #CompanyIcon{
+        max-width:100%;
+        height:auto;
+        width: 50px;
+        height: 50px;
+        margin-top: 0px;
+    }
+    .BuyCompanyHolder{
+        margin-top: -10px;
+    }
+    .BuyCompanyButton{
+        width: 155px;
+        border-radius: 10%;
+        height: 80px;
+        font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
+        font-size: 12px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #3e898e;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px #999;
+        padding-top: 5px;
+        background-image: url("../../Images/Support/CompBack3.jpg");
+        background-size: cover;
+        text-shadow: 0 0 10px #000;
+        padding-top: 10px;
+        filter: grayscale(0);
+    }
+    .BuyCompanyButton:disabled{
+        box-shadow: 0 0px #666;
+        filter: grayscale(1);
+        text-shadow: none;
+        padding-top: 5px
+    }
+    .BuyCompanyButton:active:not(:disabled) {
+        box-shadow: 0 1px #666;
+        transform: translateY(3px);
+    }
+    .CompanyUpgrade{
+        width: 125px;
+        border-radius: 10%;
+        height: 65px;
+        font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
+        font-size: 12px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-image: url("../../Images/Support/Spy2.jpg");
+        background-size: cover;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px #999;
+        text-shadow: none;
+        padding-top: 0px
+    }
+    .CompanyUpgrade:disabled{
+        background-color: grey;
+        box-shadow: 0 0px #666;
+        background-image: none;
+        text-shadow: none;
+        padding-top: 0px
+    }
+    .CompanyUpgrade:active:not(:disabled) {
+        box-shadow: 0 1px #666;
+        transform: translateY(3px);
+    }
+    .CompanyUpgrade.Purchased:disabled{
+        background-color: rgb(20, 57, 27);
+    }
+    .CompanyHolder{
+        display: inline-block;
+        margin-bottom: 7px;
+        margin-right: 10px;
+        margin-left: 20px;
+    }
+    #CompanyPopup .ScrollBody{
+        overflow-y: scroll;
+        height: 300px;
+        padding-left: 10px;
+    }
+    /*Achievements*/
+    /*Achievements*/
+    #AchievePopup .MenuOverview{
+        font-style: italic;
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: 13px;
+
+    }
+    #ACHsub{
+        font-size: 12.5;
+        font-style: normal
+    }
+    #ACHemp{
+        font-size: 12.5;
+        font-style: italic
+    }
+    #Achievements{
+        overflow-y: scroll;
+        margin-top: 5px;
+        height: 335px;
+        margin-right: 15px;
+        
+    }
+    #Achievements .Achieve{
+        padding-top: 2px;
+        padding-left: 5px;
+        margin-left: 15px;
+        text-align: left;
+        font-style: italic;
+        height: 20px;
+        padding: 5px;
+        border: 1px solid rgba(156, 114, 114, 0.509)
+    }
+    .Achieve.Unearned{
+        background-color: rgba(156, 114, 114, 0.35);
+        color: rgba(0, 0, 0, 0.5);
+        opacity: .75
+    }
+    .Achieve.Earned{
+        background-color: rgba(76, 175, 79, 0.729);
+        color: rgb(74, 105, 74);
+        border: none;
+    }
+    .CheckMark{
+        margin-right: 5px;
+        font-style: normal
+    }
+    .AchieveTip2{
+        background-color: grey;
+        color: #fff;
+        text-align: center;
+        padding: 5px;
+        border-radius: 6px;
+        z-index: 1000;
+    }
+    .AchieveTip2::after {
+        content: " ";
+        position: absolute;
+        top: 100%; /* At the bottom of the tooltip */
+        left: 10%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: grey transparent transparent transparent;
+        }
+    .Achieve:hover .AchieveTip{
+        visibility: visible;   
+    }
+    .AchieveTip2{
+        position: fixed;
+        z-index: 1000
+    }
+    .Achieve.Partial{
+        /*background-color: rgba(76, 175, 79, 0.729);*/
+        color: rgba(0, 0, 0, 0.5);
+        opacity: .75;
+        border: 1px solid rgba(156, 114, 114, 0.2)
+    }
+    .WaitingACH{
+        position: absolute;
+        top: 6px;
+        right: 56px;
+        padding: 2px 4.5px;
+        border-radius: 50%;
+        background: green;
+        color: white;
+        font-size: 8px;
+    }
+    .BasicPopHolder{
+        background-color: rgba(105, 105, 105,.6);;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0px;
+        z-index: 100;
+    }
+    #BasicPopup,#BasicConfirm{
+        height: 30vh;
+        width: 50vw;
+        margin-left: 25vw;
+        margin-right: 25vw;
+        margin-top: 35vh;
+        margin-bottom: 35vh;
+        border-radius: 15px;
+        font-size: 14px;
+    }
+    #BasicPopup .DonationHolder{
+        bottom:   20px;
+        left: -6px;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+    }
+/*Investor*/
+    .bButtonHolder{
+        width: 15.5%;
+    }
+    #InvestorPopup .MenuOverview{
+        font-style: italic;
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: 13px;
+    }
+    #InvestorPopup .StoreOverview{
+        font-style: italic;
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: 13px;
+    }
+    #InvestorIcon{
+        max-width:100%;
+        height:auto;
+        width: 50px;
+        height: 50px;
+        margin-top: 0px;
+    }
+    .MergeInvestorHolder{
+        margin-top: -10px;
+    }
+    .MergeInvestor{
+        width: 155px;
+        border-radius: 10%;
+        height: 80px;
+        font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
+        font-size: 12px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        text-shadow: 0 0 10px #000;
+        background: url("../../Images/Support/InvBack.jpg");
+        background-size: cover;
+        border: none;
+        border-radius: 15px;
+        filter: grayscale(0);
+        box-shadow: 0 4px #999;
+    }
+    .MergeInvestor:disabled{
+        filter: grayscale(1);
+        text-shadow: none;
+        box-shadow: 0 0px #666;
+    }
+    .MergeInvestor:active:not(:disabled) {
+        box-shadow: 0 1px #666;
+        transform: translateY(3px);
+    }
+    #InvestorPopup .ScrollBody{
+        height: 250px;
+        padding-left: 15px;
+    }
+    .InvestorUpgrade{
+        width: 125px;
+        border-radius: 10%;
+        height: 55px;
+        font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
+        font-size: 12px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: white;
+        text-shadow: 0 0 10px #000;
+        background: url("../../Images/Support/EmpBack3.jpg");
+        background-size: cover;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px #999;
+    }
+    .InvestorUpgrade:disabled{
+        background: grey;
+        text-shadow: none;
+        box-shadow: 0 0px #666;
+    }
+    .InvestorUpgrade:active:not(:disabled) {
+        box-shadow: 0 1px #666;
+        transform: translateY(3px);
+    }
+    .InvestorHolder{
+        display: inline-block;
+        margin-bottom: 5px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    #BasicConfirm .DonationHolder{
+        display: inline-block;
+        bottom: 20px;
+        left: 5%;
+        width: 40%;
+        text-align: center;
+        position: absolute;
+    }
+    #BasicConfirm .DonationHolder#PopConfirm{
+        display: inline-block;
+        bottom: 20px;
+        left: 50%;
+        width: 40%;
+        text-align: center;
+        position: absolute;
+    }
+    #BasicConfirm .InfoButton#PopCancel{
+        background-color: grey
+    }
+    #BasicConfirm .InfoButton#PopConfirm{
+        background-color: #4CAF50
+    }
+    #Discord{
+        width: 100px;
+        height: 40px;
+    }
+    #Discord .InfoButton#Discord{
+        width: 100px;
+        height: 40px;
+        background-image: url("../../Images/Support/Discord.png");
+        background-size: cover;
+    }
+    .LifeTimeTicket{
+        font-size: 10px;
+        font-weight: normal;
+    }
+    #BackupConvert{
+        font-size: 14px;
+        font-style: italic
+    }
+    .GameVersion{
+        text-align: center;
+        Right: 5px;
+        bottom: 55px;
+        position: fixed;
+        font-family: 'Hind', sans-serif;
+        color: #dee2e6;
+        font-size: .65rem
+    }
+
+    /*----Wizards----*/
+        #WizardPopup .MenuOverview{
+            font-style: italic;
+            margin-left: 4%;
+            margin-right: 4%;
+            font-size: 12px;
+        }
+        #WizardPopup .StoreOverview{
+            font-style: italic;
+            margin-left: 5%;
+            margin-right: 5%;
+            font-size: 13px;
+        }
+        #WizardIcon{
+            max-width:100%;
+            height:auto;
+            width: 55px;
+            height: 55px;
+            margin-top: 0px;
+        }
+        .MergeWizardHolder{
+            margin-top: -10px;
+        }
+        .MergeWizard{
+            width: 155px;
+            border-radius: 10%;
+            height: 100px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            text-shadow: 0 0 10px #000;
+            background: url("../../Images/Support/WizardBack.jpg");
+            background-size: cover;
+            border: none;
+            border-radius: 15px;
+            filter: grayscale(0);
+            box-shadow: 0 4px #999;
+        }
+        .MergeWizard:disabled{
+            filter: grayscale(1);
+            text-shadow: none;
+            box-shadow: 0 0px #666;
+        }
+        .MergeWizard:active:not(:disabled) {
+            box-shadow: 0 1px #666;
+            transform: translateY(3px);
+        }
+        #WizardPopup .ScrollBody{
+            height: 250px;
+            padding-left: 15px;
+        }
+        .WizardUpgrade{
+            width: 130px;
+            border-radius: 10%;
+            height: 60px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: white;
+            text-shadow: 0 0 10px #000;
+            background: url("../../Images/Support/WizardBack.jpg");
+            background-size: cover;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px #999;
+        }
+        .WizardUpgrade:disabled{
+            background: grey;
+            text-shadow: none;
+            box-shadow: 0 0px #666;
+        }
+        .WizardUpgrade:active:not(:disabled) {
+            box-shadow: 0 1px #666;
+            transform: translateY(3px);
+        }
+        .WizardHolder{
+            display: inline-block;
+            margin-bottom: 5px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        .LeaderTable{
+            width: 100%;
+            padding: 10px;
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+        .TheRank{
+            background-color: grey;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        .Rank1{
+            background-color: gold;
+        }
+        .Rank2{
+            background-color: silver;
+        }
+        .Rank3{
+            background-color: brown;
+        }
+        .lRank{
+            width: 40px 
+        }
+        .RankYou{
+            background-color: lightgreen;
+            border: limegreen;
+        }
+        .lName{
+            width: 160px;
+            overflow: hidden;
+        }
+        .lPosition{
+            width: 65px;
+        }
+        .BoardSelect{
+            border-radius: 10%;
+            height: 25px;
+            width: 90px;
+            font-weight: bold;
+            margin-top: 5px;
+            display: inline-block;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: rgb(133, 142, 155);
+            border: none;
+            border-radius: 15px;
+            filter: grayscale(0);
+            box-shadow: 0 4px #999;
+        }
+        .ChosenBoard{
+            background-color: green;
+        }
+        #LeaderJump{
+            border-radius: 10%;
+            height: 25px;
+            width: 90px;
+            font-weight: bold;
+            display: inline-block;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: silver;
+            border: none;
+            border-radius: 15px;
+            filter: grayscale(0);
+            box-shadow: 0 4px #999;
+            margin-bottom: 10px;
+        }
